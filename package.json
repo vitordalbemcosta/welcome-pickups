@@ -1,0 +1,25 @@
+{
+  "name": "welcome_test",
+  "version": "1.0.0",
+  "private": true,
+  "description": "welcome_test",
+  "author": "Vitor Dalbem Costa",
+  "keywords": [
+    "gatsby"
+  ],
+  "scripts": {
+    "develop": "gatsby develop",
+    "start": "gatsby develop",
+    "build": "gatsby build",
+    "serve": "gatsby serve",
+    "clean": "gatsby clean"
+  },
+  "dependencies": {
+    "babel-plugin-styled-components": "^2.1.4",
+    "gatsby": "^5.13.1",
+    "gatsby-plugin-styled-components": "^6.13.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "styled-components": "^6.1.6"
+  }
+}
