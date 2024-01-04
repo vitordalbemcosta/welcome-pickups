@@ -1,0 +1,136 @@
+[
+  {
+    "id": 1,
+    "from_location_title": "The Athens Gate Hotel",
+    "from_location_address": "10 Syngrou Av.Athens 11742, Greece",
+    "from_datetime": "2023-06-01T014:20:00+02:00",
+    "to_location_title": "Athens Airport",
+    "to_location_address": "Attiki Odos, Spata Artemida 190 04",
+    "to_datetime": "2023-06-01T015:20:00+02:00",
+    "passengers": 2,
+    "babyseats": 1,
+    "luggage": 3,
+    "hand_luggage": 2,
+    "flight_status": {
+      "flight_number": "LAX 124",
+      "flight_time": "10:00",
+      "flight_status": "On time"
+    },
+    "traveler": {
+      "phone_number": "+131244123",
+      "email": "sergeyshandarin@gmail.com",
+      "country": "Russia"
+    }
+  },
+  {
+    "id": 2,
+    "from_location_title": "Athens Airport",
+    "from_location_address": "Attiki Odos, Spata Artemida 190 04",
+    "from_datetime": "2023-06-01T017:40:00+02:00",
+    "to_location_title": "The Athens Gate Hotel",
+    "to_location_address": "10 Syngrou Av.Athens 11742, Greece",
+    "to_datetime": "2023-06-01T018:40:00+02:00",
+    "passengers": 2,
+    "babyseats": 0,
+    "luggage": 2,
+    "hand_luggage": 0,
+    "flight_status": {
+      "flight_number": "AEG 124",
+      "flight_time": "17:00",
+      "flight_status": "On time"
+    },
+    "traveler": {
+      "phone_number": "+131244123",
+      "email": "pablomonachese@gmail.com",
+      "country": "Argentina"
+    }
+  },
+  {
+    "id": 3,
+    "from_location_title": "The Athens Gate Hotel",
+    "from_location_address": "10 Syngrou Av.Athens 11742, Greece",
+    "from_datetime": "2023-06-02T015:30:00+02:00",
+    "to_location_title": "Athens Airport",
+    "to_location_address": "Attiki Odos, Spata Artemida 190 04",
+    "to_datetime": "2023-06-01T016:30:00+02:00",
+    "passengers": 2,
+    "babyseats": 0,
+    "luggage": 2,
+    "hand_luggage": 0,
+    "flight_status": {
+      "flight_number": "UDS 134",
+      "flight_time": "17:00",
+      "flight_status": "On time"
+    },
+    "traveler": {
+      "phone_number": "+131244123",
+      "email": "savvasgeorgiou@gmail.com",
+      "country": "Greece"
+    }
+  },
+  {
+    "id": 4,
+    "from_location_title": "The Athens Gate Hotel",
+    "from_location_address": "10 Syngrou Av.Athens 11742, Greece",
+    "from_datetime": "2023-06-02T021:20:00+02:00",
+    "to_location_title": "Athens Metro Mall",
+    "to_location_address": "Par. Leof. Vouliagmenis 276, Ag. Dimitrios 173 43",
+    "to_datetime": "2023-06-02T021:50:00+02:00",
+    "passengers": 2,
+    "babyseats": 0,
+    "luggage": 0,
+    "hand_luggage": 0,
+    "flight_status": null,
+    "traveler": {
+      "phone_number": "+131244123",
+      "email": "matinakallikova@gmail.com",
+      "country": "Ukraine"
+    }
+  },
+  {
+    "id": 5,
+    "from_location_title": "The Athens Gate Hotel",
+    "from_location_address": "10 Syngrou Av.Athens 11742, Greece",
+    "from_datetime": "2023-06-03T008:10:00+02:00",
+    "to_location_title": "Athens Airport",
+    "to_location_address": "Attiki Odos, Spata Artemida 190 04",
+    "to_datetime": "2023-06-03T009:10:00+02:00",
+    "passengers": 2,
+    "babyseats": 0,
+    "luggage": 2,
+    "hand_luggage": 0,
+    "flight_status": {
+      "flight_number": "OLY 149",
+      "flight_time": "10:00",
+      "flight_status": "On time"
+    },
+    "traveler": {
+      "phone_number": "+131244123",
+      "email": "johndoe@gmail.com",
+      "country": "Canada"
+    }
+  },
+  {
+    "id": 6,
+    "from_location_title": "Athens Airport",
+    "from_location_address": "Attiki Odos, Spata Artemida 190 04",
+    "from_datetime": "2023-06-03T16:20:00+02:00",
+    "to_location_title": "The Athens Gate Hotel",
+    "to_location_address": "10 Syngrou Av.Athens 11742, Greece",
+    "to_datetime": "2023-06-03T17:20:00+02:00",
+    "passengers": 2,
+    "babyseats": 2,
+    "luggage": 4,
+    "hand_luggage": 2,
+    "flight_status": {
+      "flight_number": "QAT 114",
+      "flight_time": "15:00",
+      "flight_status": "On time"
+    },
+    "traveler": {
+      "phone_number": "+131244123",
+      "email": "simonfaucitano@gmail.com",
+      "country": "France"
+    }
+  }
+]

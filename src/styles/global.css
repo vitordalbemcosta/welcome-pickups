@@ -1,0 +1,26 @@
+html {
+  white-space: pre-line;
+}
+
+body {
+  position: relative;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Rubik, sans-serif;
+}
+
+a,
+a:visited,
+a:active {
+  text-decoration: none;
+  color: inherit;
+}
+
+button {
+  border: none;
+  font-family: Rubik, sans-serif;
+}
