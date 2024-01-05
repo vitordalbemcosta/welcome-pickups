@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
-import DropdownImage from '../images/Dropdown.svg'
+// import DropdownImage from '../images/Dropdown.svg'
 import LogOutImage from '../images/log_out.svg'
 import ProfileImage from '../images/profile.svg'
 
@@ -41,6 +41,8 @@ const CollapsableBtnContainer = styled.div`
 //   transform: ${({ rotated }) => (rotated ? 'rotate(180deg)' : 'rotate(0)')};
 // `
 
+//TODO: ask Artemis if the button above is needed or not?
+
 const RightIconsContainer = styled.div`
   display: flex;
   align-items: center;
@@ -70,10 +72,10 @@ const NavBar = () => {
   }
 
   const handleLogoutClick = () => {}
-  //fazer alguma funcionalidade para este botao
+  //TODO:fazer alguma funcionalidade para este botao
 
   const handleProfileClick = () => {}
-  //fazer alguma funcionalidade para este botao tambem
+  //TODO:fazer alguma funcionalidade para este botao tambem
 
   return (
     <Nav>

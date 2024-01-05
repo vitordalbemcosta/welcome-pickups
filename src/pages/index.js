@@ -1,10 +1,12 @@
+// Index.js
 import * as React from "react";
 import "../styles/global.css";
-import TransferList from "../pageComponents/TransferList";
-import TransferListDetail from "../pageComponents/TransferListDetail";
+// import TransferList from "../pageComponents/TransferList";
+// import TransferListDetail from "../pageComponents/TransferListDetail";
 import NavBar from "../components/NavBar";
 import SideMenu from "../components/SideMenu";
 import styled from "styled-components";
+import TransferByDate from "../pageComponents/TransferByDate";
 
 const SideMenuWrapper = styled.div`
   position: absolute;
@@ -22,6 +24,8 @@ const Wrapper = styled.div`
   margin-left: 82px;
 `;
 
+//TODO:Adicionar um Favicon com a logo da Welcome
+
 const IndexPage = () => {
   return (
     <>
@@ -30,8 +34,9 @@ const IndexPage = () => {
         <SideMenu />
       </SideMenuWrapper>
       <Wrapper>
-        <TransferList />
-        <TransferListDetail />
+        <TransferByDate />
+        {/* <TransferList />
+        <TransferListDetail /> */}
       </Wrapper>
     </>
   );
@@ -39,4 +44,4 @@ const IndexPage = () => {
 
 export default IndexPage;
 
-export const Head = () => <title>Home Page</title>;
+export const Head = () => <title>Transfer List</title>;

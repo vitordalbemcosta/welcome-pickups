@@ -1,13 +1,13 @@
 import React from 'react'
 import styled from 'styled-components'
 import LogoImage from '../images/Logo.svg'
-import Button1Image from '../images/Live_view.svg'
-import Button2Image from '../images/Scheduled.svg'
-import Button3Image from '../images/Statistics.svg'
-import Button4Image from '../images/Revenue.svg'
-import Button5Image from '../images/Settings.svg'
-import BottomButton1Image from '../images/Support.svg'
-import BottomButton2Image from '../images/Collapse.svg'
+import LiveViewImage from '../images/Live_view.svg'
+import ScheduledImage from '../images/Scheduled.svg'
+import StatisticsImage from '../images/Statistics.svg'
+import RevenueImage from '../images/Revenue.svg'
+import SettingsImage from '../images/Settings.svg'
+import SupportImage from '../images/Support.svg'
+import CollapseImage from '../images/Collapse.svg'
 
 const SideMenuContainer = styled.div`
   width: 82px;
@@ -59,21 +59,21 @@ const BottomButtonImage = styled.img`
   height: 32px;
   margin-bottom: 16px;
 `
-
+// fazer o collapse para o sidebar e ajustar padding/margin das images
 const SideMenu = () => {
   return (
     <SideMenuContainer>
       <Logo src={LogoImage} alt="Logo" />
       <ButtonContainer>
-        <ButtonImage src={Button1Image} alt="Live view" />
-        <ButtonImage src={Button2Image} alt="Scheduled" />
-        <ButtonImage src={Button3Image} alt="Statistics" />
-        <ButtonImage src={Button4Image} alt="Revenue" />
-        <ButtonImage src={Button5Image} alt="Settings" />
+        <ButtonImage src={LiveViewImage} alt="Live view" />
+        <ButtonImage src={ScheduledImage} alt="Scheduled" />
+        <ButtonImage src={StatisticsImage} alt="Statistics" />
+        <ButtonImage src={RevenueImage} alt="Revenue" />
+        <ButtonImage src={SettingsImage} alt="Settings" />
       </ButtonContainer>
       <BottomButtonContainer>
-        <BottomButtonImage src={BottomButton1Image} alt="Support" />
-        <BottomButtonImage src={BottomButton2Image} alt="Collapse" />
+        <BottomButtonImage src={SupportImage} alt="Support" />
+        <BottomButtonImage src={CollapseImage} alt="Collapse" />
       </BottomButtonContainer>
     </SideMenuContainer>
   )
