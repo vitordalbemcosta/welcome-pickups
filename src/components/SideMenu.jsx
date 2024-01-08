@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
+import { rem } from 'polished'
 import LogoImage from '../images/Logo.svg'
 import LiveViewImage from '../images/Live_view.svg'
 import ScheduledImage from '../images/Scheduled.svg'
@@ -10,70 +11,86 @@ import SupportImage from '../images/Support.svg'
 import CollapseImage from '../images/Collapse.svg'
 
 const SideMenuContainer = styled.div`
-  width: 82px;
-  height: 942px;
-  top: 20px;
-  flex-shrink: 0;
-  border-radius: 0px 8px 8px 0px;
-  background: #fff;
-  box-shadow: 0px 0px 8px 0px rgba(45, 59, 78, 0.1);
+  width: ${rem(82)};
+  min-height: ${rem(1010)};
   display: flex;
   flex-direction: column;
+  border-radius: ${rem(0)} ${rem(8)} ${rem(8)} ${rem(0)};
+  background: #fff;
+  box-shadow: ${rem(0)} ${rem(0)} ${rem(8)} ${rem(0)} rgba(45, 59, 78, 0.1);
+  position: relative;
 `
 
 const Logo = styled.img`
   width: 100%;
-  padding: 16px;
+  padding: ${rem(16)};
   box-sizing: border-box;
   cursor: pointer;
 `
 
 const ButtonContainer = styled.div`
+  flex-grow: 1;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
-  padding: 16px;
+  padding: ${rem(16)};
   box-sizing: border-box;
   cursor: pointer;
 `
 
 const ButtonImage = styled.img`
-  width: 32px;
-  height: 32px;
-  margin-bottom: 16px;
+  width: ${rem(32)};
+  height: ${rem(32)};
+  margin-bottom: ${rem(16)};
 `
 
 const BottomButtonContainer = styled.div`
-  margin-top: auto;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 16px;
-  box-sizing: border-box;
-  cursor: pointer;
+  display: none;
+
+  @media (max-width: 768px) {
+    margin-top: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: ${rem(16)};
+    box-sizing: border-box;
+    cursor: pointer;
+  }
 `
 
 const BottomButtonImage = styled.img`
-  width: 32px;
-  height: 32px;
-  margin-bottom: 16px;
+  width: ${rem(32)};
+  height: ${rem(32)};
+  margin-bottom: ${rem(16)};
 `
-// fazer o collapse para o sidebar e ajustar padding/margin das images
+
 const SideMenu = () => {
   return (
     <SideMenuContainer>
-      <Logo src={LogoImage} alt="Logo" />
+      <Logo src={LogoImage} alt="Logo" aria-hidden="true" />
       <ButtonContainer>
-        <ButtonImage src={LiveViewImage} alt="Live view" />
-        <ButtonImage src={ScheduledImage} alt="Scheduled" />
-        <ButtonImage src={StatisticsImage} alt="Statistics" />
-        <ButtonImage src={RevenueImage} alt="Revenue" />
-        <ButtonImage src={SettingsImage} alt="Settings" />
+        <ButtonImage src={LiveViewImage} alt="Live view" aria-hidden="true" />
+        <ButtonImage src={ScheduledImage} alt="Scheduled" aria-hidden="true" />
+        <ButtonImage
+          src={StatisticsImage}
+          alt="Statistics"
+          aria-hidden="true"
+        />
+        <ButtonImage src={RevenueImage} alt="Revenue" aria-hidden="true" />
+        <ButtonImage src={SettingsImage} alt="Settings" aria-hidden="true" />
       </ButtonContainer>
       <BottomButtonContainer>
-        <BottomButtonImage src={SupportImage} alt="Support" />
-        <BottomButtonImage src={CollapseImage} alt="Collapse" />
+        <BottomButtonImage
+          src={SupportImage}
+          alt="Support"
+          aria-hidden="true"
+        />
+        <BottomButtonImage
+          src={CollapseImage}
+          alt="Collapse"
+          aria-hidden="true"
+        />
       </BottomButtonContainer>
     </SideMenuContainer>
   )

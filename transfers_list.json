@@ -1,7 +1,7 @@
 [
   {
     "id": 1,
-    "datetime": "2023-06-01T014:20:00+02:00",
+    "datetime": "2023-06-01T14:20:00+02:00",
     "category": "Departure",
     "traveler_photo": "https://picsum.photos/200/300?random=1",
     "traveler_first_name": "Sergey",
@@ -15,7 +15,7 @@
   },
   {
     "id": 2,
-    "datetime": "2023-06-01T018:40:00+02:00",
+    "datetime": "2023-06-01T18:40:00+02:00",
     "category": "Arrival",
     "traveler_photo": "https://picsum.photos/200/300?random=2",
     "traveler_first_name": "Pablo",
@@ -29,7 +29,7 @@
   },
   {
     "id": 3,
-    "datetime": "2023-06-02T015:30:00+02:00",
+    "datetime": "2023-06-02T15:30:00+02:00",
     "category": "Departure",
     "traveler_photo": "https://picsum.photos/200/300?random=3",
     "traveler_first_name": "Savvas",
@@ -43,7 +43,7 @@
   },
   {
     "id": 4,
-    "datetime": "2023-06-02T021:20:00+02:00",
+    "datetime": "2023-06-02T21:20:00+02:00",
     "category": "In City",
     "traveler_photo": "https://picsum.photos/200/300?random=4",
     "traveler_first_name": "Matina",
@@ -57,7 +57,7 @@
   },
   {
     "id": 5,
-    "datetime": "2023-06-03T008:10:00+02:00",
+    "datetime": "2023-06-03T08:10:00+02:00",
     "category": "Departure",
     "traveler_photo": "https://picsum.photos/200/300?random=5",
     "traveler_first_name": "John",
