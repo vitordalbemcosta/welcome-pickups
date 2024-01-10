@@ -1,8 +1,9 @@
 import React from 'react'
 import styled from 'styled-components'
 import { rem } from 'polished'
-import LogOutImage from '../images/log_out.svg'
-import ProfileImage from '../images/profile.svg'
+import LogOutImage from '../../images/log_out.svg'
+import ProfileImage from '../../images/profile.svg'
+import { breakpoints } from '../../breakpoints'
 
 const Nav = styled.nav`
   background-color: #fff;
@@ -13,6 +14,12 @@ const Nav = styled.nav`
   height: ${rem(70)};
   flex-shrink: 0;
   margin-left: ${rem(60)};
+
+  @media (max-width: ${breakpoints.laptop}) {
+  }
+  @media (max-width: ${breakpoints.tablet}) {
+    display: none;
+  }
 `
 
 const CollapsableBtnContainer = styled.div`

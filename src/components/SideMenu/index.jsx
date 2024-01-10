@@ -1,14 +1,15 @@
 import React from 'react'
 import styled from 'styled-components'
 import { rem } from 'polished'
-import LogoImage from '../images/Logo.svg'
-import LiveViewImage from '../images/Live_view.svg'
-import ScheduledImage from '../images/Scheduled.svg'
-import StatisticsImage from '../images/Statistics.svg'
-import RevenueImage from '../images/Revenue.svg'
-import SettingsImage from '../images/Settings.svg'
-import SupportImage from '../images/Support.svg'
-import CollapseImage from '../images/Collapse.svg'
+import LogoImage from '../../images/Logo.svg'
+import LiveViewImage from '../../images/Live_view.svg'
+import ScheduledImage from '../../images/Scheduled.svg'
+import StatisticsImage from '../../images/Statistics.svg'
+import RevenueImage from '../../images/Revenue.svg'
+import SettingsImage from '../../images/Settings.svg'
+import SupportImage from '../../images/Support.svg'
+import CollapseImage from '../../images/Collapse.svg'
+import { breakpoints } from '../../breakpoints'
 
 const SideMenuContainer = styled.div`
   width: ${rem(82)};
@@ -19,6 +20,13 @@ const SideMenuContainer = styled.div`
   background: #fff;
   box-shadow: ${rem(0)} ${rem(0)} ${rem(8)} ${rem(0)} rgba(45, 59, 78, 0.1);
   position: relative;
+
+  @media (max-width: ${breakpoints.tablet}) {
+    display: none;
+  }
+
+  @media (max-width: ${breakpoints.laptop}) {
+  }
 `
 
 const Logo = styled.img`
@@ -48,7 +56,7 @@ const ButtonImage = styled.img`
 const BottomButtonContainer = styled.div`
   display: none;
 
-  @media (max-width: 768px) {
+  @media (max-width: ${breakpoints.tablet}) {
     margin-top: auto;
     display: flex;
     flex-direction: column;

@@ -5,11 +5,11 @@ import NavBar from "../components/NavBar";
 import SideMenu from "../components/SideMenu";
 import styled from "styled-components";
 import TransferByDate from "../pageComponents/TransferByDate";
+import TitlesContainer from "../pageComponents/TitlesContainer";
 
 const SideMenuWrapper = styled.div`
   position: absolute;
   top: 0;
-  left: 0;
 `;
 
 const Wrapper = styled.div`
@@ -27,17 +27,6 @@ const Wrapper = styled.div`
   box-sizing: border-box;
 `;
 
-const Title = styled.h4`
-  margin: 0;
-  color: rgba(45, 59, 78, 0.5);
-  font-family: "Museo Sans", sans-serif;
-  font-size: ${rem(11)};
-  font-style: normal;
-  font-weight: 600;
-  line-height: normal;
-  letter-spacing: ${rem(0.88)};
-`;
-
 const Header = styled.h1`
   margin: 0;
   color: #2d3b4e;
@@ -49,17 +38,6 @@ const Header = styled.h1`
   letter-spacing: ${rem(0.88)};
 `;
 
-const TitlesContainer = styled.div`
-  width: ${rem(1130)};
-  height: ${rem(34)};
-  flex-shrink: 0;
-  border-radius: ${rem(6)};
-  background-color: rgba(45, 59, 78, 0.04);
-  margin-top: ${rem(20)};
-  display: flex;
-  align-items: center;
-`;
-
 const IndexPage = () => {
   return (
     <>
@@ -69,13 +47,7 @@ const IndexPage = () => {
       </SideMenuWrapper>
       <Wrapper>
         <Header>Transfers</Header>
-        <TitlesContainer>
-          <Title style={{ marginLeft: rem(10) }}>Status</Title>
-          <Title style={{ marginLeft: rem(20) }}>Traveler</Title>
-          <Title style={{ marginLeft: rem(160) }}>Arrival/Departure</Title>
-          <Title style={{ marginLeft: rem(80) }}>From/To</Title>
-          <Title style={{ marginLeft: rem(80) }}>Opportunities</Title>
-        </TitlesContainer>
+        <TitlesContainer />
         <TransferByDate />
       </Wrapper>
     </>
