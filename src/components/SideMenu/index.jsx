@@ -3,7 +3,8 @@ import styled from 'styled-components'
 import { rem } from 'polished'
 import LogoImage from '../../images/Logo.svg'
 import LiveViewImage from '../../images/Live_view.svg'
-import ScheduledImage from '../../images/Scheduled.svg'
+import ScheduledImage from '../../images/Scheduled-white.svg'
+import ScheduleBg from '../../images/Selected_schedule.svg'
 import StatisticsImage from '../../images/Statistics.svg'
 import RevenueImage from '../../images/Revenue.svg'
 import SettingsImage from '../../images/Settings.svg'
@@ -46,11 +47,24 @@ const ButtonContainer = styled.div`
   box-sizing: border-box;
   cursor: pointer;
 `
+const ButtonImageWrapper = styled.div`
+  width: ${rem(44)};
+  height: ${rem(44)};
+  margin-bottom: ${rem(16)};
+  border-radius: 8px;
+  background: url(${(props) => (props.scheduled ? props.scheduleBg : 'none')});
+  background-size: cover;
+  display: flex;
+  align-items: center;
+  padding-top: 14px;
+  justify-content: center;
+`
 
 const ButtonImage = styled.img`
   width: ${rem(32)};
   height: ${rem(32)};
   margin-bottom: ${rem(16)};
+  border-radius: 8px;
 `
 
 const BottomButtonContainer = styled.div`
@@ -79,7 +93,13 @@ const SideMenu = () => {
       <Logo src={LogoImage} alt="Logo" aria-hidden="true" />
       <ButtonContainer>
         <ButtonImage src={LiveViewImage} alt="Live view" aria-hidden="true" />
-        <ButtonImage src={ScheduledImage} alt="Scheduled" aria-hidden="true" />
+        <ButtonImageWrapper scheduled scheduleBg={ScheduleBg}>
+          <ButtonImage
+            src={ScheduledImage}
+            alt="Scheduled"
+            aria-hidden="true"
+          />
+        </ButtonImageWrapper>
         <ButtonImage
           src={StatisticsImage}
           alt="Statistics"

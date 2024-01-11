@@ -1,8 +1,10 @@
-import React from 'react'
+import React, { useState } from 'react'
 import arrivalData from '../../transfers_details.json'
+import departureData from '../../transfers_list.json'
+import mapTransfer from '../utils/mapTransfer'
+import mapDetails from '../utils/mapDetails'
 import styled from 'styled-components'
 import { rem } from 'polished'
-import departureData from '../../transfers_list.json'
 import ArrivingImage from '../images/Arriving.svg'
 import DepartingImage from '../images/Departing.svg'
 import InCityImage from '../images/InCity.svg'
@@ -10,6 +12,7 @@ import BabyOppotunity from '../images/Baby.svg'
 import EarlyCheckInOppotunity from '../images/Early_check_in.svg'
 import LateCheckOutOppotunity from '../images/Late_check_out.svg'
 import TransferOppotunity from '../images/Transfer.svg'
+import TransferDetailsModal from './TransferDetailsModal'
 
 const Title = styled.h4`
   color: rgba(45, 59, 78, 0.5);
@@ -80,7 +83,23 @@ const NameText = styled.p`
 `
 
 const TransferByDate = () => {
-  const allTransfers = [...departureData, ...arrivalData]
+  const [selectedTransfer, setSelectedTransfer] = useState(null)
+
+  const openModal = (transfer) => {
+    setSelectedTransfer(transfer)
+  }
+
+  const closeModal = () => {
+    setSelectedTransfer(null)
+  }
+
+  const allTransfers = departureData.map(mapTransfer)
+
+  const travelerDetails = arrivalData.find(
+    (transfer) => transfer.id === selectedTransfer?.id,
+  )
+
+  const mappedDetails = mapDetails(travelerDetails)
 
   const todayData = allTransfers.filter(
     (transfer) => transfer.datetime && transfer.datetime.includes('2023-06-01'),
@@ -118,14 +137,25 @@ const TransferByDate = () => {
         return null
     }
   }
-
+  //todo: need to investigate why photo name, last name are undefined
+  //todo: need to investigate how to add mapDetails to allTransfers
   return (
     <div>
+      <TransferDetailsModal
+        isOpen={!!selectedTransfer}
+        photo={allTransfers?.traveler_photo}
+        firstName={allTransfers?.travelerFirstName}
+        lastName={allTransfers?.travelerLastName}
+        phoneNumber={mappedDetails?.traveler?.phoneNumber}
+        email={mappedDetails?.traveler?.email}
+        country={mappedDetails?.traveler?.country}
+        closeModal={closeModal}
+      />
       <Title>Today</Title>
       {todayData.map((transfer) => {
-        const fullName = `${transfer.traveler_first_name} ${transfer.traveler_last_name}`
+        const fullName = `${transfer.travelerFirstName} ${transfer.travelerLastName}`
         return (
-          <TransferItem key={transfer.id}>
+          <TransferItem key={transfer.id} onClick={() => openModal(transfer)}>
             <TransferContainer>
               <TransferImage
                 src={determineCategoryImage(transfer.category)}
@@ -133,13 +163,13 @@ const TransferByDate = () => {
                 aria-hidden="true"
               />
               <TransferImage
-                src={transfer.traveler_photo}
+                src={transfer.travelerPhoto}
                 alt="Traveler photo"
                 aria-hidden="true"
               />
               <NameText>{fullName}</NameText>
               <Text>{formatDate(transfer.datetime)}</Text>
-              <Text>{transfer.location_title}</Text>
+              <Text>{transfer.locationTitle}</Text>
               {transfer.babies && (
                 <OpportunityImage
                   src={BabyOppotunity}
@@ -147,21 +177,21 @@ const TransferByDate = () => {
                   aria-hidden="true"
                 />
               )}
-              {transfer.early_checkin && (
+              {transfer.earlyCheckin && (
                 <OpportunityImage
                   src={EarlyCheckInOppotunity}
                   alt="Early Check-In Opportunity"
                   aria-hidden="true"
                 />
               )}
-              {transfer.late_checkout && (
+              {transfer.lateCheckout && (
                 <OpportunityImage
                   src={LateCheckOutOppotunity}
                   alt="Late Check-Out Opportunity"
                   aria-hidden="true"
                 />
               )}
-              {transfer.return_transfer && (
+              {transfer.returnTransfer && (
                 <OpportunityImage
                   src={TransferOppotunity}
                   alt="Transfer Opportunity"
@@ -174,9 +204,9 @@ const TransferByDate = () => {
       })}
       <Title>Tomorrow</Title>
       {tomorrowData.map((transfer) => {
-        const fullName = `${transfer.traveler_first_name} ${transfer.traveler_last_name}`
+        const fullName = `${transfer.travelerFirstName} ${transfer.travelerLastName}`
         return (
-          <TransferItem key={transfer.id}>
+          <TransferItem key={transfer.id} onClick={() => openModal(transfer)}>
             <TransferContainer>
               <TransferImage
                 src={determineCategoryImage(transfer.category)}
@@ -184,13 +214,13 @@ const TransferByDate = () => {
                 aria-hidden="true"
               />
               <TransferImage
-                src={transfer.traveler_photo}
+                src={transfer.travelerPhoto}
                 alt="Traveler photo"
                 aria-hidden="true"
               />
               <NameText>{fullName}</NameText>
               <Text>{formatDate(transfer.datetime)}</Text>
-              <Text>{transfer.location_title}</Text>
+              <Text>{transfer.locationTitle}</Text>
               {transfer.babies && (
                 <OpportunityImage
                   src={BabyOppotunity}
@@ -198,21 +228,21 @@ const TransferByDate = () => {
                   aria-hidden="true"
                 />
               )}
-              {transfer.early_checkin && (
+              {transfer.earlyCheckin && (
                 <OpportunityImage
                   src={EarlyCheckInOppotunity}
                   alt="Early Check-In Opportunity"
                   aria-hidden="true"
                 />
               )}
-              {transfer.late_checkout && (
+              {transfer.lateCheckout && (
                 <OpportunityImage
                   src={LateCheckOutOppotunity}
                   alt="Late Check-Out Opportunity"
                   aria-hidden="true"
                 />
               )}
-              {transfer.return_transfer && (
+              {transfer.returnTransfer && (
                 <OpportunityImage
                   src={TransferOppotunity}
                   alt="Transfer Opportunity"
@@ -225,9 +255,9 @@ const TransferByDate = () => {
       })}
       <Title>Saturday</Title>
       {saturdayData.map((transfer) => {
-        const fullName = `${transfer.traveler_first_name} ${transfer.traveler_last_name}`
+        const fullName = `${transfer.travelerFirstName} ${transfer.travelerLastName}`
         return (
-          <TransferItem key={transfer.id}>
+          <TransferItem key={transfer.id} onClick={() => openModal(transfer)}>
             <TransferContainer>
               <TransferImage
                 src={determineCategoryImage(transfer.category)}
@@ -235,13 +265,13 @@ const TransferByDate = () => {
                 aria-hidden="true"
               />
               <TransferImage
-                src={transfer.traveler_photo}
+                src={transfer.travelerPhoto}
                 alt="Traveler photo"
                 aria-hidden="true"
               />
               <NameText>{fullName}</NameText>
               <Text>{formatDate(transfer.datetime)}</Text>
-              <Text>{transfer.location_title}</Text>
+              <Text>{transfer.locationTitle}</Text>
               {transfer.babies && (
                 <OpportunityImage
                   src={BabyOppotunity}
@@ -249,21 +279,21 @@ const TransferByDate = () => {
                   aria-hidden="true"
                 />
               )}
-              {transfer.early_checkin && (
+              {transfer.earlyCheckin && (
                 <OpportunityImage
                   src={EarlyCheckInOppotunity}
                   alt="Early Check-In Opportunity"
                   aria-hidden="true"
                 />
               )}
-              {transfer.late_checkout && (
+              {transfer.lateCheckout && (
                 <OpportunityImage
                   src={LateCheckOutOppotunity}
                   alt="Late Check-Out Opportunity"
                   aria-hidden="true"
                 />
               )}
-              {transfer.return_transfer && (
+              {transfer.returnTransfer && (
                 <OpportunityImage
                   src={TransferOppotunity}
                   alt="Transfer Opportunity"
