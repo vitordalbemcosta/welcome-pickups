@@ -13,10 +13,11 @@ import EarlyCheckInOppotunity from '../images/Early_check_in.svg'
 import LateCheckOutOppotunity from '../images/Late_check_out.svg'
 import TransferOppotunity from '../images/Transfer.svg'
 import TransferDetailsModal from './TransferDetailsModal'
+import { breakpoints } from '../breakpoints/index'
+import formatDate from '../utils/formatDate'
 
 const Title = styled.h4`
   color: rgba(45, 59, 78, 0.5);
-  font-family: 'Museo Sans', sans-serif;
   font-size: ${rem(12)};
   font-style: normal;
   font-weight: 600;
@@ -27,11 +28,22 @@ const Title = styled.h4`
 const TransferContainer = styled.div`
   display: grid;
   grid-template-columns: 4rem 4.4rem 11.49rem 14.7rem 12.3rem 2.45rem 2rem 2rem 2rem;
-  width: ${rem(1130)};
   height: ${rem(34)};
   flex-shrink: 0;
   border-radius: ${rem(6)};
   margin-top: ${rem(20)};
+
+  @media (${breakpoints.laptop}) {
+    grid-template-columns: 3.5rem 4rem 9.5rem 12.5rem 11rem 2rem 1.6rem 1.6rem 1.6rem;
+  }
+
+  @media (${breakpoints.tablet}) {
+    grid-template-columns: 3rem 3.9rem 9rem 11.8rem 9.8rem 1.8rem 1.5rem 1.5rem 1.5rem;
+  }
+
+  @media (max-width: 480px) {
+    display: none;
+  }
 `
 
 const TransferImage = styled.img`
@@ -64,7 +76,6 @@ const Text = styled.p`
   margin-top: ${rem(8)};
   font-weight: 400;
   color: #2d3b4e;
-  font-family: 'Museo Sans', sans-serif;
   font-size: ${rem(14)};
 `
 const NameText = styled.p`
@@ -75,10 +86,8 @@ const NameText = styled.p`
   align-items: left;
   align-content: stretch;
   margin-top: ${rem(8)};
-
   font-weight: 500;
   color: #2d3b4e;
-  font-family: 'Museo Sans', sans-serif;
   font-size: ${rem(14)};
 `
 
@@ -113,18 +122,6 @@ const TransferByDate = () => {
     (transfer) => transfer.datetime && transfer.datetime.includes('2023-06-03'),
   )
 
-  const formatDate = (dateString) => {
-    const date = new Date(dateString)
-
-    const options = {
-      weekday: 'long',
-      month: 'long',
-      hour: 'numeric',
-      minute: 'numeric',
-    }
-    return date.toLocaleDateString('en-US', options)
-  }
-
   const determineCategoryImage = (category) => {
     switch (category) {
       case 'Arrival':
@@ -137,19 +134,29 @@ const TransferByDate = () => {
         return null
     }
   }
-  //todo: need to investigate why photo name, last name are undefined
-  //todo: need to investigate how to add mapDetails to allTransfers
+
   return (
     <div>
       <TransferDetailsModal
         isOpen={!!selectedTransfer}
-        photo={allTransfers?.traveler_photo}
-        firstName={allTransfers?.travelerFirstName}
-        lastName={allTransfers?.travelerLastName}
+        photo={selectedTransfer?.travelerPhoto}
+        firstName={selectedTransfer?.travelerFirstName}
+        lastName={selectedTransfer?.travelerLastName}
         phoneNumber={mappedDetails?.traveler?.phoneNumber}
         email={mappedDetails?.traveler?.email}
         country={mappedDetails?.traveler?.country}
         closeModal={closeModal}
+        fromLocationTitle={mappedDetails?.fromLocationTitle}
+        fromDatetime={mappedDetails?.fromDatetime}
+        toLocationTitle={mappedDetails?.toLocationTitle}
+        toDatetime={mappedDetails?.toDatetime}
+        fromLocationAddress={mappedDetails?.fromLocationAddress}
+        toLocationAddress={mappedDetails?.toLocationAddress}
+        babySeats={mappedDetails?.babySeats}
+        earlyCheckin={mappedDetails?.earlyCheckin}
+        lateCheckout={mappedDetails?.lateCheckout}
+        returnTransfer={mappedDetails?.returnTransfer}
+        transfer={!!selectedTransfer}
       />
       <Title>Today</Title>
       {todayData.map((transfer) => {

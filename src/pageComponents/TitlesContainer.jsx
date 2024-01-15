@@ -1,19 +1,40 @@
 import React from 'react'
 import styled from 'styled-components'
 import { rem } from 'polished'
+import { breakpoints } from '../breakpoints/index'
 
 const Wrapper = styled.div`
   display: grid;
   grid-template-columns: 2.8rem 13.8rem 13.39rem 11rem 16rem 10.25rem;
   gap: ${rem(20)};
-  width: ${rem(1130)};
+  max-width: ${rem(1059)};
+  width: 100%;
   height: ${rem(34)};
   flex-shrink: 0;
   border-radius: ${rem(6)};
+  margin-top: ${rem(20)};
   background-color: rgba(45, 59, 78, 0.04);
   margin-top: ${rem(20)};
   align-items: center;
   padding-left: ${rem(14)};
+
+  @media (max-width: ${breakpoints.laptop}) {
+    grid-template-columns: 2.5rem 12.2rem 11.5rem 10rem 6rem 2rem 1.6rem 1.6rem 1.6rem;
+    gap: ${rem(15)};
+    padding-left: ${rem(10)};
+  }
+
+  @media (max-width: ${breakpoints.tablet}) {
+    grid-template-columns: 3rem 10.8rem 11.1rem 9rem 9.8rem 1.8rem 1.5rem 1.5rem 1.5rem;
+    gap: ${rem(10)};
+    padding-left: ${rem(8)};
+  }
+
+  @media (max-width: 480px) {
+    @media (max-width: 480px) {
+      display: none;
+    }
+  }
 `
 
 const Title = styled.h4`
@@ -28,15 +49,13 @@ const Title = styled.h4`
 
 const TitlesContainer = () => {
   return (
-    <div>
-      <Wrapper>
-        <Title>Status</Title>
-        <Title>Traveler</Title>
-        <Title>Arrival/Departure</Title>
-        <Title>From/To</Title>
-        <Title>Opportunities</Title>
-      </Wrapper>
-    </div>
+    <Wrapper>
+      <Title>Status</Title>
+      <Title>Traveler</Title>
+      <Title>Arrival/Departure</Title>
+      <Title>From/To</Title>
+      <Title>Opportunities</Title>
+    </Wrapper>
   )
 }
 

@@ -1,25 +1,25 @@
-const mapDetails = (details) => {
-  if (!details) {
+const mapDetails = (transfer) => {
+  if (!transfer) {
     return null
   }
 
   return {
-    id: details.id,
-    fromLocationTitle: details.from_location_title,
-    fromLocationAddress: details.from_location_address,
-    fromDatetime: details.from_datetime,
-    toLocationTitle: details.to_location_title,
-    toLocationAddress: details.to_location_address,
-    toDatetime: details.to_datetime,
-    passengers: details.passengers,
-    babySeats: details.babyseats,
-    luggage: details.luggage,
-    handLuggage: details.hand_luggage,
-    flightStatus: details.flight_status,
+    id: transfer.id,
+    fromLocationTitle: transfer.from_location_title,
+    fromLocationAddress: transfer.from_location_address,
+    fromDatetime: transfer.from_datetime,
+    toLocationTitle: transfer.to_location_title,
+    toLocationAddress: transfer.to_location_address,
+    toDatetime: transfer.to_datetime,
+    passengers: transfer.passengers,
+    babySeats: transfer.babyseats,
+    luggage: transfer.luggage,
+    handLuggage: transfer.hand_luggage,
+    flightStatus: transfer.flight_status,
     traveler: {
-      phoneNumber: details.traveler?.phone_number,
-      email: details.traveler?.email,
-      country: details.traveler?.country,
+      phoneNumber: transfer.traveler?.phone_number,
+      email: transfer.traveler?.email,
+      country: transfer.traveler?.country,
     },
   }
 }
