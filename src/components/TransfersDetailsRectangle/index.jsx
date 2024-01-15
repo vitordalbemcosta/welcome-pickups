@@ -12,7 +12,8 @@ const RectangleContainer = styled.div`
   align-items: center;
   justify-content: space-between;
   padding: 0 ${rem(16)};
-  margin-bottom: ${rem(40)};
+  margin-bottom: ${rem(11)};
+  margin-top: ${rem(26)};
 `
 
 const IconContainer = styled.div`

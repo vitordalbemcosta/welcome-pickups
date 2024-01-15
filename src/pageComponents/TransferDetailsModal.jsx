@@ -7,6 +7,7 @@ import EarlyCheckIn from '../images/Early_check_in.svg'
 import LateCheckOut from '../images/Late_check_out.svg'
 import Transfer from '../images/Transfer.svg'
 import TransfersDetailsRectangle from '../components/TransfersDetailsRectangle'
+import TransfersDetailsFlightStatus from '../components/TransfersDetailsFlightStatus'
 
 const TransferImage = styled.img`
   width: ${rem(83)};
@@ -174,6 +175,7 @@ const OpportunityImage = styled.img`
 
 //todo: need to find out how to make the formatTime function work here
 //todo: need to investigate why icons not coming line 220
+//todo: use the remainder props as needed
 const TransferDetailsModal = ({
   isOpen,
   firstName,
@@ -200,6 +202,7 @@ const TransferDetailsModal = ({
   transfer,
 }) => {
   const opportunities = transfer ? transfer.opportunities : []
+  const isFlightOnTime = transfer ? transfer.flight_status : {}
 
   return (
     <div>
@@ -277,6 +280,7 @@ const TransferDetailsModal = ({
                   </TransferDetails>
                 </TransfersContainer>
                 <TransfersDetailsRectangle opportunities={opportunities} />
+                <TransfersDetailsFlightStatus isFlightOnTime={isFlightOnTime} />
               </Container>
             </div>
           </Wrapper>
