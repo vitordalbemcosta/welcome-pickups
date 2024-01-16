@@ -15,6 +15,7 @@ import LuggageIcon from '../images/Luggage.svg'
 import PassangerIcon from '../images/Passengers.svg'
 import FillIcon from '../images/Fill.svg'
 import ArrowDotted from '../images/Arrow.Dotted.svg'
+import formatTime from '../utils/formatTime'
 
 const Container = styled.div`
   width: ${rem(656)};
@@ -382,19 +383,19 @@ const TransferDetailsModal = ({
                       <BarUnderDate />
                       <LocationWrapper>
                         <LocationArrow>
-                          <img src={FillIcon}></img>
-                          <img src={ArrowDotted} alt="" />
-                          <img src={FillIcon}></img>
+                          <img src={FillIcon} alt="Fill icon"></img>
+                          <img src={ArrowDotted} alt="Arrow down" />
+                          <img src={FillIcon} alt="Fill icon"></img>
                         </LocationArrow>
                         <LocationInfoWrapper>
                           <LocationInfo>
                             <h4>{`${fromLocationTitle}`}</h4>
-                            <p>{`${fromDatetime}`}</p>
+                            <p>{`${formatTime(fromDatetime)}`}</p>
                           </LocationInfo>
                           <p>{`${fromLocationAddress}`}</p>
                           <LocationInfo>
                             <h4>{`${toLocationTitle}`}</h4>
-                            <p>{`${toDatetime}`}</p>
+                            <p>{`${formatTime(toDatetime)}`}</p>
                           </LocationInfo>
                           <p>{`${toLocationAddress}`}</p>
                         </LocationInfoWrapper>

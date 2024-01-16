@@ -22,6 +22,7 @@ const Wrapper = styled.div`
     grid-template-columns: 2.5rem 12.2rem 11.5rem 10rem 6rem 2rem 1.6rem 1.6rem 1.6rem;
     gap: ${rem(15)};
     padding-left: ${rem(10)};
+    width: 94%;
   }
 
   @media (max-width: ${breakpoints.tablet}) {

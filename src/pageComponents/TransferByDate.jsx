@@ -82,11 +82,13 @@ const OpportunityImage = styled.img`
 `
 const TransferItem = styled.div`
   height: ${rem(56)};
+  width: 119.3%;
   flex-shrink: 0;
   border-radius: ${rem(6)};
   background: #fff;
   box-shadow: 0px 1px 1px 0px rgba(45, 59, 78, 0.06);
   @media (max-width: ${breakpoints.laptop}) {
+    width: 104%;
   }
 
   @media (max-width: ${breakpoints.tablet}) {
@@ -128,11 +130,9 @@ const TransferByDate = () => {
   const openModal = (transfer) => {
     setSelectedTransfer(transfer)
   }
-  console.log(selectedTransfer)
 
   const closeModal = () => {
     setSelectedTransfer(null)
-    console.log('bananas')
   }
 
   const allTransfers = departureData.map(mapTransfer)
@@ -249,6 +249,7 @@ const TransferByDate = () => {
               key={transfer.id}
               onClick={() => openModal(transfer)}
               firstName={transfer.travelerFirstName}
+              lastName={transfer.travelerLastName}
               photo={transfer.travelerPhoto}
               fromLocationTitle={transfer.locationTitle}
               fromDatetime={transfer.datetime}
@@ -311,6 +312,7 @@ const TransferByDate = () => {
               key={transfer.id}
               onClick={() => openModal(transfer)}
               firstName={transfer.travelerFirstName}
+              lastName={transfer.travelerLastName}
               photo={transfer.travelerPhoto}
               fromLocationTitle={transfer.locationTitle}
               fromDatetime={transfer.datetime}
@@ -373,6 +375,7 @@ const TransferByDate = () => {
               key={transfer.id}
               onClick={() => openModal(transfer)}
               firstName={transfer.travelerFirstName}
+              lastName={transfer.travelerLastName}
               photo={transfer.travelerPhoto}
               fromLocationTitle={transfer.locationTitle}
               fromDatetime={transfer.datetime}

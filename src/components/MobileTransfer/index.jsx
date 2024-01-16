@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { breakpoints } from '../../breakpoints'
 import styled from 'styled-components'
 import { rem } from 'polished'
+import formatDate from '../../utils/formatDate'
 
 const Wrapper = styled.button`
   width: ${rem(320)};
@@ -90,6 +91,7 @@ const TransferImage = styled.img`
 const MobileTransfer = ({
   isOpen,
   firstName,
+  lastName,
   photo,
   fromLocationTitle,
   fromDatetime,
@@ -133,7 +135,9 @@ const MobileTransfer = ({
               <image>arriving</image>
             </ImageWrapper>
             <PhotoAndNameWrapper>
-              <Name>{`${firstName}`}</Name>
+              <Name>
+                {`${firstName}`} {`${lastName}`}
+              </Name>
               <TransferImage
                 src={`${photo}`}
                 alt="Traveler photo"
@@ -144,7 +148,7 @@ const MobileTransfer = ({
               <h6>Property</h6>
               <p>{`${propertyTitle}`}</p>
               <h6>Arrival Time</h6>
-              <p>{`${fromDatetime}`}</p>
+              <p>{`${formatDate(fromDatetime)}`}</p>
               <h6>from</h6>
               <p>{`${fromLocationTitle}`}</p>
               <h6>Opportunities</h6>
