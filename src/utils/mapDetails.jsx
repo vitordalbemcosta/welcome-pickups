@@ -16,9 +16,9 @@ const mapDetails = (transfer) => {
     luggage: transfer.luggage,
     handLuggage: transfer.hand_luggage,
     flightStatus: {
-      flightNumber: transfer.flight_number,
-      flightTime: transfer.flight_time,
-      flightStatus: transfer.flight_status,
+      number: transfer?.flight_status?.flight_number,
+      time: transfer?.flight_status?.flight_time,
+      status: transfer?.flight_status?.flight_status,
     },
     traveler: {
       phoneNumber: transfer.traveler?.phone_number,

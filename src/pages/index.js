@@ -6,6 +6,7 @@ import SideMenu from "../components/SideMenu";
 import styled from "styled-components";
 import TransferByDate from "../pageComponents/TransferByDate";
 import TitlesContainer from "../pageComponents/TitlesContainer";
+import { breakpoints } from "../breakpoints";
 
 const SideMenuWrapper = styled.div`
   position: absolute;
@@ -25,6 +26,16 @@ const Wrapper = styled.div`
   background-color: #f4f5f6;
   padding: ${rem(20)};
   box-sizing: border-box;
+
+  @media (max-width: ${breakpoints.laptop}) {
+  }
+
+  @media (max-width: ${breakpoints.tablet}) {
+    height: 100%;
+  }
+
+  @media (max-width: ${breakpoints.mobile}) {
+  }
 `;
 
 const Header = styled.h1`

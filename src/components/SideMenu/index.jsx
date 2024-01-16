@@ -27,6 +27,7 @@ const SideMenuContainer = styled.div`
   }
 
   @media (max-width: ${breakpoints.laptop}) {
+    display: none;
   }
 `
 

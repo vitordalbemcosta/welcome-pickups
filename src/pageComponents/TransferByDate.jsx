@@ -15,14 +15,34 @@ import TransferOppotunity from '../images/Transfer.svg'
 import TransferDetailsModal from './TransferDetailsModal'
 import { breakpoints } from '../breakpoints/index'
 import formatDate from '../utils/formatDate'
+import MobileTransfer from '../components/MobileTransfer'
 
 const Title = styled.h4`
   color: rgba(45, 59, 78, 0.5);
   font-size: ${rem(12)};
-  font-style: normal;
   font-weight: 600;
   line-height: normal;
-  margin: ${rem(12)} ${rem(0)};
+  margin: 12px 0;
+  border-radius: ${rem(16)};
+
+  @media (max-width: ${breakpoints.laptop}) {
+  }
+
+  @media (max-width: ${breakpoints.tablet}) {
+    width: ${rem(320)};
+    height: ${rem(32)};
+    flex-shrink: 0;
+    background: rgba(45, 59, 78, 0.04);
+    padding: ${rem(10)};
+  }
+
+  @media (max-width: ${breakpoints.mobile}) {
+    width: ${rem(320)};
+    height: ${rem(32)};
+    flex-shrink: 0;
+    background: rgba(45, 59, 78, 0.04);
+    padding: ${rem(10)};
+  }
 `
 
 const TransferContainer = styled.div`
@@ -33,15 +53,16 @@ const TransferContainer = styled.div`
   border-radius: ${rem(6)};
   margin-top: ${rem(20)};
 
-  @media (${breakpoints.laptop}) {
+  @media (max-width: ${breakpoints.laptop}) {
     grid-template-columns: 3.5rem 4rem 9.5rem 12.5rem 11rem 2rem 1.6rem 1.6rem 1.6rem;
   }
 
-  @media (${breakpoints.tablet}) {
+  @media (max-width: ${breakpoints.tablet}) {
     grid-template-columns: 3rem 3.9rem 9rem 11.8rem 9.8rem 1.8rem 1.5rem 1.5rem 1.5rem;
+    display: none;
   }
 
-  @media (max-width: 480px) {
+  @media (max-width: ${breakpoints.mobile}) {
     display: none;
   }
 `
@@ -65,6 +86,16 @@ const TransferItem = styled.div`
   border-radius: ${rem(6)};
   background: #fff;
   box-shadow: 0px 1px 1px 0px rgba(45, 59, 78, 0.06);
+  @media (max-width: ${breakpoints.laptop}) {
+  }
+
+  @media (max-width: ${breakpoints.tablet}) {
+    display: none;
+  }
+
+  @media (max-width: ${breakpoints.mobile}) {
+    display: none;
+  }
 `
 const Text = styled.p`
   display: flex;
@@ -97,9 +128,11 @@ const TransferByDate = () => {
   const openModal = (transfer) => {
     setSelectedTransfer(transfer)
   }
+  console.log(selectedTransfer)
 
   const closeModal = () => {
     setSelectedTransfer(null)
+    console.log('bananas')
   }
 
   const allTransfers = departureData.map(mapTransfer)
@@ -156,159 +189,196 @@ const TransferByDate = () => {
         earlyCheckin={mappedDetails?.earlyCheckin}
         lateCheckout={mappedDetails?.lateCheckout}
         returnTransfer={mappedDetails?.returnTransfer}
-        transfer={!!selectedTransfer}
+        transfer={selectedTransfer}
+        handLuggage={mappedDetails?.handLuggage}
+        luggage={mappedDetails?.luggage}
+        passengers={mappedDetails?.passengers}
+        flightStatus={mappedDetails?.flightStatus}
       />
       <Title>Today</Title>
       {todayData.map((transfer) => {
         const fullName = `${transfer.travelerFirstName} ${transfer.travelerLastName}`
         return (
-          <TransferItem key={transfer.id} onClick={() => openModal(transfer)}>
-            <TransferContainer>
-              <TransferImage
-                src={determineCategoryImage(transfer.category)}
-                alt="Status image"
-                aria-hidden="true"
-              />
-              <TransferImage
-                src={transfer.travelerPhoto}
-                alt="Traveler photo"
-                aria-hidden="true"
-              />
-              <NameText>{fullName}</NameText>
-              <Text>{formatDate(transfer.datetime)}</Text>
-              <Text>{transfer.locationTitle}</Text>
-              {transfer.babies && (
-                <OpportunityImage
-                  src={BabyOppotunity}
-                  alt="Baby Opportunity"
+          <>
+            <TransferItem key={transfer.id} onClick={() => openModal(transfer)}>
+              <TransferContainer>
+                <TransferImage
+                  src={determineCategoryImage(transfer.category)}
+                  alt="Status image"
                   aria-hidden="true"
                 />
-              )}
-              {transfer.earlyCheckin && (
-                <OpportunityImage
-                  src={EarlyCheckInOppotunity}
-                  alt="Early Check-In Opportunity"
+                <TransferImage
+                  src={transfer.travelerPhoto}
+                  alt="Traveler photo"
                   aria-hidden="true"
                 />
-              )}
-              {transfer.lateCheckout && (
-                <OpportunityImage
-                  src={LateCheckOutOppotunity}
-                  alt="Late Check-Out Opportunity"
-                  aria-hidden="true"
-                />
-              )}
-              {transfer.returnTransfer && (
-                <OpportunityImage
-                  src={TransferOppotunity}
-                  alt="Transfer Opportunity"
-                  aria-hidden="true"
-                />
-              )}
-            </TransferContainer>
-          </TransferItem>
+                <NameText>{fullName}</NameText>
+                <Text>{formatDate(transfer.datetime)}</Text>
+                <Text>{transfer.locationTitle}</Text>
+                {transfer.babies && (
+                  <OpportunityImage
+                    src={BabyOppotunity}
+                    alt="Baby Opportunity"
+                    aria-hidden="true"
+                  />
+                )}
+                {transfer.earlyCheckin && (
+                  <OpportunityImage
+                    src={EarlyCheckInOppotunity}
+                    alt="Early Check-In Opportunity"
+                    aria-hidden="true"
+                  />
+                )}
+                {transfer.lateCheckout && (
+                  <OpportunityImage
+                    src={LateCheckOutOppotunity}
+                    alt="Late Check-Out Opportunity"
+                    aria-hidden="true"
+                  />
+                )}
+                {transfer.returnTransfer && (
+                  <OpportunityImage
+                    src={TransferOppotunity}
+                    alt="Transfer Opportunity"
+                    aria-hidden="true"
+                  />
+                )}
+              </TransferContainer>
+            </TransferItem>
+            <MobileTransfer
+              key={transfer.id}
+              onClick={() => openModal(transfer)}
+              firstName={transfer.travelerFirstName}
+              photo={transfer.travelerPhoto}
+              fromLocationTitle={transfer.locationTitle}
+              fromDatetime={transfer.datetime}
+              propertyTitle={transfer.propertyTitle}
+            />
+          </>
         )
       })}
       <Title>Tomorrow</Title>
       {tomorrowData.map((transfer) => {
         const fullName = `${transfer.travelerFirstName} ${transfer.travelerLastName}`
         return (
-          <TransferItem key={transfer.id} onClick={() => openModal(transfer)}>
-            <TransferContainer>
-              <TransferImage
-                src={determineCategoryImage(transfer.category)}
-                alt="Status image"
-                aria-hidden="true"
-              />
-              <TransferImage
-                src={transfer.travelerPhoto}
-                alt="Traveler photo"
-                aria-hidden="true"
-              />
-              <NameText>{fullName}</NameText>
-              <Text>{formatDate(transfer.datetime)}</Text>
-              <Text>{transfer.locationTitle}</Text>
-              {transfer.babies && (
-                <OpportunityImage
-                  src={BabyOppotunity}
-                  alt="Baby Opportunity"
+          <>
+            <TransferItem key={transfer.id} onClick={() => openModal(transfer)}>
+              <TransferContainer>
+                <TransferImage
+                  src={determineCategoryImage(transfer.category)}
+                  alt="Status image"
                   aria-hidden="true"
                 />
-              )}
-              {transfer.earlyCheckin && (
-                <OpportunityImage
-                  src={EarlyCheckInOppotunity}
-                  alt="Early Check-In Opportunity"
+                <TransferImage
+                  src={transfer.travelerPhoto}
+                  alt="Traveler photo"
                   aria-hidden="true"
                 />
-              )}
-              {transfer.lateCheckout && (
-                <OpportunityImage
-                  src={LateCheckOutOppotunity}
-                  alt="Late Check-Out Opportunity"
-                  aria-hidden="true"
-                />
-              )}
-              {transfer.returnTransfer && (
-                <OpportunityImage
-                  src={TransferOppotunity}
-                  alt="Transfer Opportunity"
-                  aria-hidden="true"
-                />
-              )}
-            </TransferContainer>
-          </TransferItem>
+                <NameText>{fullName}</NameText>
+                <Text>{formatDate(transfer.datetime)}</Text>
+                <Text>{transfer.locationTitle}</Text>
+                {transfer.babies && (
+                  <OpportunityImage
+                    src={BabyOppotunity}
+                    alt="Baby Opportunity"
+                    aria-hidden="true"
+                  />
+                )}
+                {transfer.earlyCheckin && (
+                  <OpportunityImage
+                    src={EarlyCheckInOppotunity}
+                    alt="Early Check-In Opportunity"
+                    aria-hidden="true"
+                  />
+                )}
+                {transfer.lateCheckout && (
+                  <OpportunityImage
+                    src={LateCheckOutOppotunity}
+                    alt="Late Check-Out Opportunity"
+                    aria-hidden="true"
+                  />
+                )}
+                {transfer.returnTransfer && (
+                  <OpportunityImage
+                    src={TransferOppotunity}
+                    alt="Transfer Opportunity"
+                    aria-hidden="true"
+                  />
+                )}
+              </TransferContainer>
+            </TransferItem>
+            <MobileTransfer
+              key={transfer.id}
+              onClick={() => openModal(transfer)}
+              firstName={transfer.travelerFirstName}
+              photo={transfer.travelerPhoto}
+              fromLocationTitle={transfer.locationTitle}
+              fromDatetime={transfer.datetime}
+              propertyTitle={transfer.propertyTitle}
+            />
+          </>
         )
       })}
       <Title>Saturday</Title>
       {saturdayData.map((transfer) => {
         const fullName = `${transfer.travelerFirstName} ${transfer.travelerLastName}`
         return (
-          <TransferItem key={transfer.id} onClick={() => openModal(transfer)}>
-            <TransferContainer>
-              <TransferImage
-                src={determineCategoryImage(transfer.category)}
-                alt="Status image"
-                aria-hidden="true"
-              />
-              <TransferImage
-                src={transfer.travelerPhoto}
-                alt="Traveler photo"
-                aria-hidden="true"
-              />
-              <NameText>{fullName}</NameText>
-              <Text>{formatDate(transfer.datetime)}</Text>
-              <Text>{transfer.locationTitle}</Text>
-              {transfer.babies && (
-                <OpportunityImage
-                  src={BabyOppotunity}
-                  alt="Baby Opportunity"
+          <>
+            <TransferItem key={transfer.id} onClick={() => openModal(transfer)}>
+              <TransferContainer>
+                <TransferImage
+                  src={determineCategoryImage(transfer.category)}
+                  alt="Status image"
                   aria-hidden="true"
                 />
-              )}
-              {transfer.earlyCheckin && (
-                <OpportunityImage
-                  src={EarlyCheckInOppotunity}
-                  alt="Early Check-In Opportunity"
+                <TransferImage
+                  src={transfer.travelerPhoto}
+                  alt="Traveler photo"
                   aria-hidden="true"
                 />
-              )}
-              {transfer.lateCheckout && (
-                <OpportunityImage
-                  src={LateCheckOutOppotunity}
-                  alt="Late Check-Out Opportunity"
-                  aria-hidden="true"
-                />
-              )}
-              {transfer.returnTransfer && (
-                <OpportunityImage
-                  src={TransferOppotunity}
-                  alt="Transfer Opportunity"
-                  aria-hidden="true"
-                />
-              )}
-            </TransferContainer>
-          </TransferItem>
+                <NameText>{fullName}</NameText>
+                <Text>{formatDate(transfer.datetime)}</Text>
+                <Text>{transfer.locationTitle}</Text>
+                {transfer.babies && (
+                  <OpportunityImage
+                    src={BabyOppotunity}
+                    alt="Baby Opportunity"
+                    aria-hidden="true"
+                  />
+                )}
+                {transfer.earlyCheckin && (
+                  <OpportunityImage
+                    src={EarlyCheckInOppotunity}
+                    alt="Early Check-In Opportunity"
+                    aria-hidden="true"
+                  />
+                )}
+                {transfer.lateCheckout && (
+                  <OpportunityImage
+                    src={LateCheckOutOppotunity}
+                    alt="Late Check-Out Opportunity"
+                    aria-hidden="true"
+                  />
+                )}
+                {transfer.returnTransfer && (
+                  <OpportunityImage
+                    src={TransferOppotunity}
+                    alt="Transfer Opportunity"
+                    aria-hidden="true"
+                  />
+                )}
+              </TransferContainer>
+            </TransferItem>
+            <MobileTransfer
+              key={transfer.id}
+              onClick={() => openModal(transfer)}
+              firstName={transfer.travelerFirstName}
+              photo={transfer.travelerPhoto}
+              fromLocationTitle={transfer.locationTitle}
+              fromDatetime={transfer.datetime}
+              propertyTitle={transfer.propertyTitle}
+            />
+          </>
         )
       })}
     </div>

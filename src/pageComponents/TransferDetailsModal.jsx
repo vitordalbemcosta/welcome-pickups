@@ -8,6 +8,43 @@ import LateCheckOut from '../images/Late_check_out.svg'
 import Transfer from '../images/Transfer.svg'
 import TransfersDetailsRectangle from '../components/TransfersDetailsRectangle'
 import TransfersDetailsFlightStatus from '../components/TransfersDetailsFlightStatus'
+import { breakpoints } from '../breakpoints'
+import ChildSeatIcon from '../images/Child_seat.svg'
+import HandLuggageIcon from '../images/HandLuggage.svg'
+import LuggageIcon from '../images/Luggage.svg'
+import PassangerIcon from '../images/Passengers.svg'
+import FillIcon from '../images/Fill.svg'
+import ArrowDotted from '../images/Arrow.Dotted.svg'
+
+const Container = styled.div`
+  width: ${rem(656)};
+  height: ${rem(314)};
+  flex-shrink: 0;
+  border-radius: ${rem(6)};
+  background: rgba(45, 59, 78, 0.03);
+  padding: ${rem(20)};
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin-top: ${rem(18)};
+
+  @media (max-width: ${breakpoints.laptop}) {
+    width: 95%;
+    height: 62%;
+  }
+
+  @media (max-width: ${breakpoints.tablet}) {
+    width: 85%;
+    height: 64%;
+  }
+
+  @media (max-width: ${breakpoints.mobile}) {
+    display: none;
+  }
+`
+const ModalTransferDetails = styled.div`
+  margin: 10px 24px;
+`
 
 const TransferImage = styled.img`
   width: ${rem(83)};
@@ -37,6 +74,12 @@ const LastName = styled.p`
 const ClientDetails = styled.div`
   display: flex;
   flex-direction: column;
+`
+
+const LocationInfoWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  margin: 0 24px;
 `
 
 const DetailsContainer = styled.div`
@@ -76,28 +119,25 @@ const VerticalBar = styled.div`
   margin-right: ${rem(38)};
 `
 
-const Container = styled.div`
-  width: ${rem(656)};
-  height: ${rem(314)};
-  flex-shrink: 0;
-  border-radius: ${rem(6)};
-  background: rgba(45, 59, 78, 0.03);
-  padding: ${rem(20)};
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  margin-top: ${rem(18)};
-`
-
 const TransfersContainer = styled.div``
+
+const BarUnderDate = styled.div`
+  width: ${rem(59)};
+  height: ${rem(2)};
+  flex-shrink: 0;
+  border-radius: ${rem(1.5)};
+  background: #48d9a4;
+  margin: -5px 0px 17px 0;
+`
 
 const TransferDetails = styled.div`
   display: flex;
   flex-direction: column;
+  position: relative;
 `
 
 const Date = styled.h6`
-  font-size: ${rem(14)};
+  font-size: ${rem(16)};
   font-weight: 600;
   color: #2d3b4e;
   margin-bottom: ${rem(16)};
@@ -105,8 +145,8 @@ const Date = styled.h6`
 
 const LocationWrapper = styled.div`
   display: flex;
-  flex-direction: column;
-  max-width: ${rem(350)};
+  flex-direction: row;
+  width: ${rem(470)};
 
   p {
     color: rgba(45, 59, 78, 0.5);
@@ -115,6 +155,18 @@ const LocationWrapper = styled.div`
     font-weight: 400;
     line-height: ${rem(18)};
     margin-top: ${rem(4)};
+
+    @media (max-width: ${breakpoints.laptop}) {
+      font-size: ${rem(11)};
+    }
+
+    @media (max-width: ${breakpoints.tablet}) {
+      font-size: ${rem(10)};
+    }
+
+    @media (max-width: ${breakpoints.mobile}) {
+      display: none;
+    }
   }
 `
 
@@ -139,6 +191,18 @@ const LocationInfo = styled.div`
     font-weight: 400;
     line-height: ${rem(21)};
     text-align: left;
+
+    @media (max-width: ${breakpoints.laptop}) {
+      font-size: ${rem(11)};
+    }
+
+    @media (max-width: ${breakpoints.tablet}) {
+      font-size: ${rem(10)};
+    }
+
+    @media (max-width: ${breakpoints.mobile}) {
+      display: none;
+    }
   }
 `
 
@@ -171,11 +235,32 @@ const OpportunityImage = styled.img`
   width: ${rem(24)};
   height: ${rem(24)};
   border-radius: 50%;
+  margin-right: 18px;
+`
+const LocationArrow = styled.span`
+  display: flex;
+  flex-direction: column;
+
+  img {
+    width: 14px;
+    height: 14px;
+    margin: 10px 0px;
+  }
+`
+const OpportunitiesWrapper = styled.div`
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  align-content: stretch;
+  margin-bottom: -12px;
+  margin-top: 10px;
+
+  p {
+    padding-top: 1px;
+  }
 `
 
-//todo: need to find out how to make the formatTime function work here
-//todo: need to investigate why icons not coming line 220
-//todo: use the remainder props as needed
 const TransferDetailsModal = ({
   isOpen,
   firstName,
@@ -201,8 +286,24 @@ const TransferDetailsModal = ({
   returnTransfer,
   transfer,
 }) => {
-  const opportunities = transfer ? transfer.opportunities : []
-  const isFlightOnTime = transfer ? transfer.flight_status : {}
+  const opportunities = [
+    {
+      icon: PassangerIcon,
+      number: passengers,
+    },
+    {
+      icon: ChildSeatIcon,
+      number: babySeats,
+    },
+    {
+      icon: LuggageIcon,
+      number: luggage,
+    },
+    {
+      icon: HandLuggageIcon,
+      number: handLuggage,
+    },
+  ]
 
   return (
     <div>
@@ -229,32 +330,44 @@ const TransferDetailsModal = ({
                 <p>{`${country}`}</p>
                 <h6>Opportunities</h6>
                 {transfer && transfer.babies && (
-                  <OpportunityImage
-                    src={Baby}
-                    alt="Baby Opportunity"
-                    aria-hidden="true"
-                  />
+                  <OpportunitiesWrapper>
+                    <OpportunityImage
+                      src={Baby}
+                      alt="Baby Opportunity"
+                      aria-hidden="true"
+                    />
+                    <p>Baby</p>
+                  </OpportunitiesWrapper>
                 )}
                 {transfer && transfer.earlyCheckin && (
-                  <OpportunityImage
-                    src={EarlyCheckIn}
-                    alt="Early Check-In Opportunity"
-                    aria-hidden="true"
-                  />
+                  <OpportunitiesWrapper>
+                    <OpportunityImage
+                      src={EarlyCheckIn}
+                      alt="Early Check-In Opportunity"
+                      aria-hidden="true"
+                    />
+                    <p>Early Check in</p>
+                  </OpportunitiesWrapper>
                 )}
                 {transfer && transfer.lateCheckout && (
-                  <OpportunityImage
-                    src={LateCheckOut}
-                    alt="Late Check-Out Opportunity"
-                    aria-hidden="true"
-                  />
+                  <OpportunitiesWrapper>
+                    <OpportunityImage
+                      src={LateCheckOut}
+                      alt="Late Check-Out Opportunity"
+                      aria-hidden="true"
+                    />
+                    <p>Late checkout</p>
+                  </OpportunitiesWrapper>
                 )}
                 {transfer && transfer.returnTransfer && (
-                  <OpportunityImage
-                    src={Transfer}
-                    alt="Transfer Opportunity"
-                    aria-hidden="true"
-                  />
+                  <OpportunitiesWrapper>
+                    <OpportunityImage
+                      src={Transfer}
+                      alt="Transfer Opportunity"
+                      aria-hidden="true"
+                    />
+                    <p>Return transfer</p>
+                  </OpportunitiesWrapper>
                 )}
               </DetailsContainer>
             </ClientDetails>
@@ -262,25 +375,39 @@ const TransferDetailsModal = ({
             <div>
               <Heading>Transfers</Heading>
               <Container>
-                <TransfersContainer>
-                  <TransferDetails>
-                    <Date>July 01</Date>
-                    <LocationWrapper>
-                      <LocationInfo>
-                        <h4>{`${fromLocationTitle}`}</h4>
-                        <p>{`${fromDatetime}`}</p>
-                      </LocationInfo>
-                      <p>{`${fromLocationAddress}`}</p>
-                      <LocationInfo>
-                        <h4>{`${toLocationTitle}`}</h4>
-                        <p>{`${toDatetime}`}</p>
-                      </LocationInfo>
-                      <p>{`${toLocationAddress}`}</p>
-                    </LocationWrapper>
-                  </TransferDetails>
-                </TransfersContainer>
-                <TransfersDetailsRectangle opportunities={opportunities} />
-                <TransfersDetailsFlightStatus isFlightOnTime={isFlightOnTime} />
+                <ModalTransferDetails>
+                  <TransfersContainer>
+                    <TransferDetails>
+                      <Date>July 01</Date>
+                      <BarUnderDate />
+                      <LocationWrapper>
+                        <LocationArrow>
+                          <img src={FillIcon}></img>
+                          <img src={ArrowDotted} alt="" />
+                          <img src={FillIcon}></img>
+                        </LocationArrow>
+                        <LocationInfoWrapper>
+                          <LocationInfo>
+                            <h4>{`${fromLocationTitle}`}</h4>
+                            <p>{`${fromDatetime}`}</p>
+                          </LocationInfo>
+                          <p>{`${fromLocationAddress}`}</p>
+                          <LocationInfo>
+                            <h4>{`${toLocationTitle}`}</h4>
+                            <p>{`${toDatetime}`}</p>
+                          </LocationInfo>
+                          <p>{`${toLocationAddress}`}</p>
+                        </LocationInfoWrapper>
+                      </LocationWrapper>
+                    </TransferDetails>
+                  </TransfersContainer>
+                  <TransfersDetailsRectangle opportunities={opportunities} />
+                  <TransfersDetailsFlightStatus
+                    flightNumber={flightStatus?.number}
+                    flightTime={flightStatus?.time}
+                    flightStatus={flightStatus?.status}
+                  />
+                </ModalTransferDetails>
               </Container>
             </div>
           </Wrapper>

@@ -25,15 +25,11 @@ const Wrapper = styled.div`
   }
 
   @media (max-width: ${breakpoints.tablet}) {
-    grid-template-columns: 3rem 10.8rem 11.1rem 9rem 9.8rem 1.8rem 1.5rem 1.5rem 1.5rem;
-    gap: ${rem(10)};
-    padding-left: ${rem(8)};
+    display: none;
   }
 
-  @media (max-width: 480px) {
-    @media (max-width: 480px) {
-      display: none;
-    }
+  @media (max-width: ${breakpoints.mobile}) {
+    display: none;
   }
 `
 

@@ -2,6 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import { rem } from 'polished'
 import CloseIcon from '../../images/close-icon.svg'
+import { breakpoints } from '../../breakpoints'
 
 const ModalOverlay = styled.div`
   position: fixed;
@@ -21,10 +22,27 @@ const ModalContent = styled.div`
   background: #fff;
   border-radius: ${rem(8)};
   padding: ${rem(16)};
-  width: 990px;
-  height: 666px;
+  width: ${rem(990)};
+  height: ${rem(666)};
   flex-shrink: 0;
   position: relative;
+  @media (max-width: ${breakpoints.laptop}) {
+    width: 85%;
+    min-height: 70%;
+  }
+
+  @media (max-width: ${breakpoints.tablet}) {
+    min-width: 75%;
+    min-height: 70%;
+  }
+
+  @media (max-width: 600px) {
+    display: none;
+  }
+
+  @media (max-width: ${breakpoints.mobile}) {
+    display: none;
+  }
 `
 
 const CloseButton = styled.button`
@@ -40,11 +58,12 @@ const CloseButton = styled.button`
   display: flex;
   align-items: center;
   justify-content: center;
+  margin: ${rem(22)};
 `
 
 const CloseIconImage = styled.img`
-  width: 20px;
-  height: 20px;
+  width: ${rem(20)};
+  height: ${rem(20)};
   fill: #2d3b4e;
 `
 

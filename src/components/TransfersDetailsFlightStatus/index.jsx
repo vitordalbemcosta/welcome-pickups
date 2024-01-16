@@ -3,9 +3,10 @@ import styled from 'styled-components'
 import { rem } from 'polished'
 import TakeOff from '../../images/Takeoff_Icon.svg'
 import TimeIcon from '../../images/Time_Icon.svg'
+import { breakpoints } from '../../breakpoints'
 
 const RectangleContainer = styled.div`
-  width: ${rem(284)};
+  width: ${rem(294)};
   height: ${rem(36)};
   flex-shrink: 0;
   border-radius: ${rem(18)};
@@ -13,8 +14,20 @@ const RectangleContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 ${rem(16)};
+  padding: 18px;
   margin-bottom: ${rem(32)};
+
+  @media (max-width: ${breakpoints.laptop}) {
+    width: 58%;
+  }
+
+  @media (max-width: ${breakpoints.tablet}) {
+    width: 70%;
+  }
+
+  @media (max-width: ${breakpoints.mobile}) {
+    display: none;
+  }
 `
 
 const IconContainer = styled.div`
@@ -27,7 +40,6 @@ const VerticalBar = styled.div`
   height: 20px;
   flex-shrink: 0;
   background: rgba(45, 59, 78, 0.08);
-  margin: 0 14px;
 `
 
 const Icon = styled.img`
@@ -38,28 +50,60 @@ const Icon = styled.img`
 `
 
 const Number = styled.span`
-  color: rgba(45, 59, 78, 1);
+  color: rgba(45, 59, 78, 0.5);
   font-size: ${rem(14)};
+  font-weight: 600;
+
+  @media (max-width: ${breakpoints.laptop}) {
+    width: 95%;
+    font-size: ${rem(12)};
+  }
+
+  @media (max-width: ${breakpoints.tablet}) {
+    width: 90%;
+    font-size: ${rem(10)};
+  }
+
+  @media (max-width: ${breakpoints.mobile}) {
+    display: none;
+  }
 `
 
-//todo: need to investigate the values for flight status and display them
+const FlightStatus = styled.span`
+  color: rgba(66, 197, 148, 1);
+  font-size: ${rem(14)};
+  font-weight: 600;
 
-const FlightStatusIcons = ({ isFlightOnTime }) => {
+  @media (max-width: ${breakpoints.laptop}) {
+    width: 95%;
+    font-size: ${rem(12)};
+  }
+
+  @media (max-width: ${breakpoints.tablet}) {
+    width: 90%;
+    font-size: ${rem(10)};
+  }
+
+  @media (max-width: ${breakpoints.mobile}) {
+    display: none;
+  }
+`
+
+const FlightStatusIcons = ({ flightNumber, flightTime, flightStatus }) => {
   return (
     <RectangleContainer>
       <IconContainer>
         <Icon src={TakeOff} alt="Takeoff Icon" />
-        <VerticalBar />
-        <Number>{isFlightOnTime?.flightNumber}</Number>
+        <Number>{flightNumber}</Number>
       </IconContainer>
+      <VerticalBar />
       <IconContainer>
         <Icon src={TimeIcon} alt="Time Icon" />
-        <VerticalBar />
-        <Number>{isFlightOnTime?.flightTime}</Number>
+        <Number>{flightTime}</Number>
       </IconContainer>
+      <VerticalBar />
       <IconContainer>
-        <Icon src={TakeOff} alt="Flight Status Icon" />
-        <Number>{isFlightOnTime?.flightStatus}</Number>
+        <FlightStatus>{flightStatus}</FlightStatus>
       </IconContainer>
     </RectangleContainer>
   )
