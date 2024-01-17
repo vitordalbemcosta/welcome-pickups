@@ -7,7 +7,7 @@ import { breakpoints } from '../../breakpoints'
 
 const Nav = styled.nav`
   background-color: #fff;
-  max-width: ${rem(1200)};
+  max-width: ${rem(1400)};
   display: flex;
   justify-content: right;
   align-items: center;

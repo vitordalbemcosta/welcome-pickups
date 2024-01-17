@@ -15,7 +15,6 @@ const RectangleContainer = styled.div`
   align-items: center;
   justify-content: space-between;
   padding: 18px;
-  margin-bottom: ${rem(32)};
 
   @media (max-width: ${breakpoints.laptop}) {
     width: 58%;
@@ -90,6 +89,10 @@ const FlightStatus = styled.span`
 `
 
 const FlightStatusIcons = ({ flightNumber, flightTime, flightStatus }) => {
+  if (!flightStatus) {
+    return null
+  }
+
   return (
     <RectangleContainer>
       <IconContainer>

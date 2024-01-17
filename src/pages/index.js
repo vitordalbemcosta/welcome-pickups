@@ -21,7 +21,7 @@ const Wrapper = styled.div`
   align-items: flex-start;
   align-content: center;
   margin-left: ${rem(82)};
-  max-width: ${rem(1200)};
+  max-width: ${rem(1380)};
   height: ${rem(942)};
   background-color: #f4f5f6;
   padding: ${rem(20)};

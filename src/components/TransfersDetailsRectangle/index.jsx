@@ -13,7 +13,7 @@ const RectangleContainer = styled.div`
   align-items: center;
   padding: 0 ${rem(16)};
   margin-bottom: ${rem(11)};
-  margin-top: ${rem(26)};
+  margin-top: ${rem(10)};
 
   @media (max-width: ${breakpoints.laptop}) {
     width: 58%;

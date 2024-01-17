@@ -5,9 +5,6 @@ import mapTransfer from '../utils/mapTransfer'
 import mapDetails from '../utils/mapDetails'
 import styled from 'styled-components'
 import { rem } from 'polished'
-import ArrivingImage from '../images/Arriving.svg'
-import DepartingImage from '../images/Departing.svg'
-import InCityImage from '../images/InCity.svg'
 import BabyOppotunity from '../images/Baby.svg'
 import EarlyCheckInOppotunity from '../images/Early_check_in.svg'
 import LateCheckOutOppotunity from '../images/Late_check_out.svg'
@@ -16,6 +13,8 @@ import TransferDetailsModal from './TransferDetailsModal'
 import { breakpoints } from '../breakpoints/index'
 import formatDate from '../utils/formatDate'
 import MobileTransfer from '../components/MobileTransfer'
+import NextPageButton from '../components/NextPageButton'
+import determineCategoryImageWeb from '../utils/categoryImage'
 
 const Title = styled.h4`
   color: rgba(45, 59, 78, 0.5);
@@ -47,18 +46,18 @@ const Title = styled.h4`
 
 const TransferContainer = styled.div`
   display: grid;
-  grid-template-columns: 4rem 4.4rem 11.49rem 14.7rem 12.3rem 2.45rem 2rem 2rem 2rem;
-  height: ${rem(34)};
+  grid-template-columns: 4rem 4.4rem 11.49rem 14.7rem 12.3rem 3.45rem 2rem 2rem 2rem;
+  height: 100%;
   flex-shrink: 0;
   border-radius: ${rem(6)};
   margin-top: ${rem(20)};
+  align-items: center;
 
   @media (max-width: ${breakpoints.laptop}) {
-    grid-template-columns: 3.5rem 4rem 9.5rem 12.5rem 11rem 2rem 1.6rem 1.6rem 1.6rem;
+    grid-template-columns: 3.5rem 4rem 9.5rem 12.5rem 11rem 3rem 1.6rem 1.6rem 1.6rem;
   }
 
   @media (max-width: ${breakpoints.tablet}) {
-    grid-template-columns: 3rem 3.9rem 9rem 11.8rem 9.8rem 1.8rem 1.5rem 1.5rem 1.5rem;
     display: none;
   }
 
@@ -71,24 +70,38 @@ const TransferImage = styled.img`
   width: ${rem(40)};
   height: ${rem(40)};
   border-radius: 50%;
-  margin-top: ${rem(8)};
   margin-left: ${rem(14)};
 `
+
 const OpportunityImage = styled.img`
   width: ${rem(24)};
   height: ${rem(24)};
   border-radius: 50%;
-  margin-top: ${rem(16)};
 `
+const BackgroundWrapper = styled.div`
+  width: 38px;
+  height: 38px;
+  background-color: #f4f5f6;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`
+
 const TransferItem = styled.div`
   height: ${rem(56)};
-  width: 119.3%;
+  width: 135%;
   flex-shrink: 0;
   border-radius: ${rem(6)};
   background: #fff;
   box-shadow: 0px 1px 1px 0px rgba(45, 59, 78, 0.06);
+
   @media (max-width: ${breakpoints.laptop}) {
     width: 104%;
+  }
+
+  @media (max-width: 1220px) {
+    width: 102%;
   }
 
   @media (max-width: ${breakpoints.tablet}) {
@@ -100,28 +113,36 @@ const TransferItem = styled.div`
   }
 `
 const Text = styled.p`
-  display: flex;
-  flex-direction: column;
-  flex-wrap: nowrap;
-  justify-content: center;
-  align-items: left;
-  align-content: stretch;
-  margin-top: ${rem(8)};
   font-weight: 400;
   color: #2d3b4e;
   font-size: ${rem(14)};
 `
 const NameText = styled.p`
-  display: flex;
-  flex-direction: column;
-  flex-wrap: nowrap;
-  justify-content: center;
-  align-items: left;
-  align-content: stretch;
-  margin-top: ${rem(8)};
   font-weight: 500;
   color: #2d3b4e;
   font-size: ${rem(14)};
+`
+const NextPageButtonsWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  margin-top: 25px;
+  margin-left: 284px;
+
+  @media (max-width: ${breakpoints.laptop}) {
+    margin-left: 100px;
+  }
+
+  @media (max-width: 1220px) {
+    margin-left: 100px;
+  }
+
+  @media (max-width: ${breakpoints.tablet}) {
+    display: none;
+  }
+
+  @media (max-width: ${breakpoints.mobile}) {
+    display: none;
+  }
 `
 
 const TransferByDate = () => {
@@ -154,19 +175,6 @@ const TransferByDate = () => {
   const saturdayData = allTransfers.filter(
     (transfer) => transfer.datetime && transfer.datetime.includes('2023-06-03'),
   )
-
-  const determineCategoryImage = (category) => {
-    switch (category) {
-      case 'Arrival':
-        return ArrivingImage
-      case 'Departure':
-        return DepartingImage
-      case 'In City':
-        return InCityImage
-      default:
-        return null
-    }
-  }
 
   return (
     <div>
@@ -203,7 +211,7 @@ const TransferByDate = () => {
             <TransferItem key={transfer.id} onClick={() => openModal(transfer)}>
               <TransferContainer>
                 <TransferImage
-                  src={determineCategoryImage(transfer.category)}
+                  src={determineCategoryImageWeb(transfer.category)}
                   alt="Status image"
                   aria-hidden="true"
                 />
@@ -216,32 +224,40 @@ const TransferByDate = () => {
                 <Text>{formatDate(transfer.datetime)}</Text>
                 <Text>{transfer.locationTitle}</Text>
                 {transfer.babies && (
-                  <OpportunityImage
-                    src={BabyOppotunity}
-                    alt="Baby Opportunity"
-                    aria-hidden="true"
-                  />
+                  <BackgroundWrapper>
+                    <OpportunityImage
+                      src={BabyOppotunity}
+                      alt="Baby Opportunity"
+                      aria-hidden="true"
+                    />
+                  </BackgroundWrapper>
                 )}
                 {transfer.earlyCheckin && (
-                  <OpportunityImage
-                    src={EarlyCheckInOppotunity}
-                    alt="Early Check-In Opportunity"
-                    aria-hidden="true"
-                  />
+                  <BackgroundWrapper>
+                    <OpportunityImage
+                      src={EarlyCheckInOppotunity}
+                      alt="Early Check-In Opportunity"
+                      aria-hidden="true"
+                    />
+                  </BackgroundWrapper>
                 )}
                 {transfer.lateCheckout && (
-                  <OpportunityImage
-                    src={LateCheckOutOppotunity}
-                    alt="Late Check-Out Opportunity"
-                    aria-hidden="true"
-                  />
+                  <BackgroundWrapper>
+                    <OpportunityImage
+                      src={LateCheckOutOppotunity}
+                      alt="Late Check-Out Opportunity"
+                      aria-hidden="true"
+                    />
+                  </BackgroundWrapper>
                 )}
                 {transfer.returnTransfer && (
-                  <OpportunityImage
-                    src={TransferOppotunity}
-                    alt="Transfer Opportunity"
-                    aria-hidden="true"
-                  />
+                  <BackgroundWrapper>
+                    <OpportunityImage
+                      src={TransferOppotunity}
+                      alt="Transfer Opportunity"
+                      aria-hidden="true"
+                    />
+                  </BackgroundWrapper>
                 )}
               </TransferContainer>
             </TransferItem>
@@ -254,6 +270,11 @@ const TransferByDate = () => {
               fromLocationTitle={transfer.locationTitle}
               fromDatetime={transfer.datetime}
               propertyTitle={transfer.propertyTitle}
+              category={transfer.category}
+              babies={transfer.babies}
+              earlyCheckin={transfer.earlyCheckin}
+              lateCheckout={transfer.lateCheckout}
+              returnTransfer={transfer.returnTransfer}
             />
           </>
         )
@@ -266,7 +287,7 @@ const TransferByDate = () => {
             <TransferItem key={transfer.id} onClick={() => openModal(transfer)}>
               <TransferContainer>
                 <TransferImage
-                  src={determineCategoryImage(transfer.category)}
+                  src={determineCategoryImageWeb(transfer.category)}
                   alt="Status image"
                   aria-hidden="true"
                 />
@@ -279,32 +300,40 @@ const TransferByDate = () => {
                 <Text>{formatDate(transfer.datetime)}</Text>
                 <Text>{transfer.locationTitle}</Text>
                 {transfer.babies && (
-                  <OpportunityImage
-                    src={BabyOppotunity}
-                    alt="Baby Opportunity"
-                    aria-hidden="true"
-                  />
+                  <BackgroundWrapper>
+                    <OpportunityImage
+                      src={BabyOppotunity}
+                      alt="Baby Opportunity"
+                      aria-hidden="true"
+                    />
+                  </BackgroundWrapper>
                 )}
                 {transfer.earlyCheckin && (
-                  <OpportunityImage
-                    src={EarlyCheckInOppotunity}
-                    alt="Early Check-In Opportunity"
-                    aria-hidden="true"
-                  />
+                  <BackgroundWrapper>
+                    <OpportunityImage
+                      src={EarlyCheckInOppotunity}
+                      alt="Early Check-In Opportunity"
+                      aria-hidden="true"
+                    />
+                  </BackgroundWrapper>
                 )}
                 {transfer.lateCheckout && (
-                  <OpportunityImage
-                    src={LateCheckOutOppotunity}
-                    alt="Late Check-Out Opportunity"
-                    aria-hidden="true"
-                  />
+                  <BackgroundWrapper>
+                    <OpportunityImage
+                      src={LateCheckOutOppotunity}
+                      alt="Late Check-Out Opportunity"
+                      aria-hidden="true"
+                    />
+                  </BackgroundWrapper>
                 )}
                 {transfer.returnTransfer && (
-                  <OpportunityImage
-                    src={TransferOppotunity}
-                    alt="Transfer Opportunity"
-                    aria-hidden="true"
-                  />
+                  <BackgroundWrapper>
+                    <OpportunityImage
+                      src={TransferOppotunity}
+                      alt="Transfer Opportunity"
+                      aria-hidden="true"
+                    />
+                  </BackgroundWrapper>
                 )}
               </TransferContainer>
             </TransferItem>
@@ -317,6 +346,11 @@ const TransferByDate = () => {
               fromLocationTitle={transfer.locationTitle}
               fromDatetime={transfer.datetime}
               propertyTitle={transfer.propertyTitle}
+              category={transfer.category}
+              babies={transfer.babies}
+              earlyCheckin={transfer.earlyCheckin}
+              lateCheckout={transfer.lateCheckout}
+              returnTransfer={transfer.returnTransfer}
             />
           </>
         )
@@ -329,7 +363,7 @@ const TransferByDate = () => {
             <TransferItem key={transfer.id} onClick={() => openModal(transfer)}>
               <TransferContainer>
                 <TransferImage
-                  src={determineCategoryImage(transfer.category)}
+                  src={determineCategoryImageWeb(transfer.category)}
                   alt="Status image"
                   aria-hidden="true"
                 />
@@ -342,32 +376,40 @@ const TransferByDate = () => {
                 <Text>{formatDate(transfer.datetime)}</Text>
                 <Text>{transfer.locationTitle}</Text>
                 {transfer.babies && (
-                  <OpportunityImage
-                    src={BabyOppotunity}
-                    alt="Baby Opportunity"
-                    aria-hidden="true"
-                  />
+                  <BackgroundWrapper>
+                    <OpportunityImage
+                      src={BabyOppotunity}
+                      alt="Baby Opportunity"
+                      aria-hidden="true"
+                    />
+                  </BackgroundWrapper>
                 )}
                 {transfer.earlyCheckin && (
-                  <OpportunityImage
-                    src={EarlyCheckInOppotunity}
-                    alt="Early Check-In Opportunity"
-                    aria-hidden="true"
-                  />
+                  <BackgroundWrapper>
+                    <OpportunityImage
+                      src={EarlyCheckInOppotunity}
+                      alt="Early Check-In Opportunity"
+                      aria-hidden="true"
+                    />
+                  </BackgroundWrapper>
                 )}
                 {transfer.lateCheckout && (
-                  <OpportunityImage
-                    src={LateCheckOutOppotunity}
-                    alt="Late Check-Out Opportunity"
-                    aria-hidden="true"
-                  />
+                  <BackgroundWrapper>
+                    <OpportunityImage
+                      src={LateCheckOutOppotunity}
+                      alt="Late Check-Out Opportunity"
+                      aria-hidden="true"
+                    />
+                  </BackgroundWrapper>
                 )}
                 {transfer.returnTransfer && (
-                  <OpportunityImage
-                    src={TransferOppotunity}
-                    alt="Transfer Opportunity"
-                    aria-hidden="true"
-                  />
+                  <BackgroundWrapper>
+                    <OpportunityImage
+                      src={TransferOppotunity}
+                      alt="Transfer Opportunity"
+                      aria-hidden="true"
+                    />
+                  </BackgroundWrapper>
                 )}
               </TransferContainer>
             </TransferItem>
@@ -380,10 +422,18 @@ const TransferByDate = () => {
               fromLocationTitle={transfer.locationTitle}
               fromDatetime={transfer.datetime}
               propertyTitle={transfer.propertyTitle}
+              category={transfer.category}
+              babies={transfer.babies}
+              earlyCheckin={transfer.earlyCheckin}
+              lateCheckout={transfer.lateCheckout}
+              returnTransfer={transfer.returnTransfer}
             />
           </>
         )
       })}
+      <NextPageButtonsWrapper>
+        <NextPageButton onClick={null} />
+      </NextPageButtonsWrapper>
     </div>
   )
 }

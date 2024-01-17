@@ -3,10 +3,15 @@ import { breakpoints } from '../../breakpoints'
 import styled from 'styled-components'
 import { rem } from 'polished'
 import formatDate from '../../utils/formatDate'
+import determineCategoryImageMobile from '../../utils/categoryImageMobile'
+import BabyOppotunity from '../../images/Baby.svg'
+import EarlyCheckInOppotunity from '../../images/Early_check_in.svg'
+import LateCheckOutOppotunity from '../../images/Late_check_out.svg'
+import TransferOppotunity from '../../images/Transfer.svg'
 
 const Wrapper = styled.button`
   width: ${rem(320)};
-  height: ${rem(312)};
+  height: ${rem(310)};
   flex-shrink: 0;
   background-color: #fff;
   filter: drop-shadow(0px 1px 1px rgba(45, 59, 78, 0.06));
@@ -44,6 +49,7 @@ const DetailsContainer = styled.div`
   display: flex;
   flex-direction: column;
   margin-top: ${rem(16)};
+  margin-bottom: 22px;
 
   h6 {
     font-size: ${rem(12)};
@@ -73,19 +79,45 @@ const PhotoAndNameWrapper = styled.div`
   flex-wrap: nowrap;
   align-items: center;
   justify-content: space-between;
-  margin: 0 27px;
+  margin: -12px 27px;
 `
 
 const ImageWrapper = styled.div`
   display: flex;
-  margin: 0 27px;
+  margin: 17px 23px 5px 23px;
 `
 
 const TransferImage = styled.img`
   width: ${rem(54)};
   height: ${rem(54)};
   border-radius: 50%;
-  margin-top: ${rem(-10)};
+  margin-top: ${rem(-12)};
+`
+const CategoryImage = styled.img`
+  width: ${rem(75)};
+  height: ${rem(20)};
+  margin-bottom: 8px;
+  gap: 20px;
+`
+const OpportunityImage = styled.img`
+  width: ${rem(24)};
+  height: ${rem(24)};
+  border-radius: 50%;
+`
+const BackgroundWrapper = styled.div`
+  width: 38px;
+  height: 38px;
+  background-color: #f4f5f6;
+  border-radius: 50%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  margin: 6px 13px 10px 0;
+`
+const OpportunitiesWrapper = styled.div`
+  display: flex;
+  flex-direction: row;
 `
 
 const MobileTransfer = ({
@@ -96,6 +128,11 @@ const MobileTransfer = ({
   fromLocationTitle,
   fromDatetime,
   propertyTitle,
+  category,
+  babies,
+  earlyCheckin,
+  lateCheckout,
+  returnTransfer,
 }) => {
   const [isMobile, setIsMobile] = useState(
     window.innerWidth <= parseInt(breakpoints.tablet),
@@ -129,10 +166,14 @@ const MobileTransfer = ({
   return (
     <div>
       {isMobile && (
-        <>
+        <div>
           <Wrapper onClick={() => openModal()}>
             <ImageWrapper>
-              <image>arriving</image>
+              <CategoryImage
+                src={determineCategoryImageMobile(category)}
+                alt="Category image"
+                aria-hidden="true"
+              />
             </ImageWrapper>
             <PhotoAndNameWrapper>
               <Name>
@@ -152,7 +193,44 @@ const MobileTransfer = ({
               <h6>from</h6>
               <p>{`${fromLocationTitle}`}</p>
               <h6>Opportunities</h6>
-              <image></image>
+              <OpportunitiesWrapper>
+                {babies && (
+                  <BackgroundWrapper>
+                    <OpportunityImage
+                      src={BabyOppotunity}
+                      alt="Baby Opportunity"
+                      aria-hidden="true"
+                    />
+                  </BackgroundWrapper>
+                )}
+                {earlyCheckin && (
+                  <BackgroundWrapper>
+                    <OpportunityImage
+                      src={EarlyCheckInOppotunity}
+                      alt="Early Check-In Opportunity"
+                      aria-hidden="true"
+                    />
+                  </BackgroundWrapper>
+                )}
+                {lateCheckout && (
+                  <BackgroundWrapper>
+                    <OpportunityImage
+                      src={LateCheckOutOppotunity}
+                      alt="Late Check-Out Opportunity"
+                      aria-hidden="true"
+                    />
+                  </BackgroundWrapper>
+                )}
+                {returnTransfer && (
+                  <BackgroundWrapper>
+                    <OpportunityImage
+                      src={TransferOppotunity}
+                      alt="Transfer Opportunity"
+                      aria-hidden="true"
+                    />
+                  </BackgroundWrapper>
+                )}
+              </OpportunitiesWrapper>
             </DetailsContainer>
           </Wrapper>
           {modalOpen && (
@@ -161,7 +239,7 @@ const MobileTransfer = ({
               <button onClick={closeModal}>Close Modal</button>
             </MobileTransferDetailsModal>
           )}
-        </>
+        </div>
       )}
     </div>
   )

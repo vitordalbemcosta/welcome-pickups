@@ -81,6 +81,7 @@ const LocationInfoWrapper = styled.div`
   display: flex;
   flex-direction: column;
   margin: 0 24px;
+  padding-right: 10px;
 `
 
 const DetailsContainer = styled.div`
@@ -123,7 +124,7 @@ const VerticalBar = styled.div`
 const TransfersContainer = styled.div``
 
 const BarUnderDate = styled.div`
-  width: ${rem(59)};
+  width: ${rem(52)};
   height: ${rem(2)};
   flex-shrink: 0;
   border-radius: ${rem(1.5)};
@@ -189,12 +190,14 @@ const LocationInfo = styled.div`
     color: rgba(45, 59, 78, 0.5);
     font-size: ${rem(14)};
     font-style: normal;
-    font-weight: 400;
+    font-weight: 600;
     line-height: ${rem(21)};
     text-align: left;
+    margin-left: 65px;
 
     @media (max-width: ${breakpoints.laptop}) {
       font-size: ${rem(11)};
+      margin-left: 5px;
     }
 
     @media (max-width: ${breakpoints.tablet}) {
@@ -205,6 +208,9 @@ const LocationInfo = styled.div`
       display: none;
     }
   }
+`
+const LocationAddress = styled.p`
+  margin: 11px 0;
 `
 
 const Line = styled.div`
@@ -241,13 +247,20 @@ const OpportunityImage = styled.img`
 const LocationArrow = styled.span`
   display: flex;
   flex-direction: column;
-
-  img {
-    width: 14px;
-    height: 14px;
-    margin: 10px 0px;
-  }
+  align-items: center;
+  margin: 4px 0 0 0;
 `
+
+const FillIconStyled = styled.img`
+  width: 20px;
+  height: 20px;
+`
+const ArrowDownStyled = styled.img`
+  width: 6px;
+  height: 25px;
+  margin: 6px 0;
+`
+
 const OpportunitiesWrapper = styled.div`
   display: flex;
   flex-direction: row;
@@ -383,21 +396,27 @@ const TransferDetailsModal = ({
                       <BarUnderDate />
                       <LocationWrapper>
                         <LocationArrow>
-                          <img src={FillIcon} alt="Fill icon"></img>
-                          <img src={ArrowDotted} alt="Arrow down" />
-                          <img src={FillIcon} alt="Fill icon"></img>
+                          <FillIconStyled
+                            src={FillIcon}
+                            alt="Fill icon"
+                          ></FillIconStyled>
+                          <ArrowDownStyled src={ArrowDotted} alt="Arrow down" />
+                          <FillIconStyled
+                            src={FillIcon}
+                            alt="Fill icon"
+                          ></FillIconStyled>
                         </LocationArrow>
                         <LocationInfoWrapper>
                           <LocationInfo>
                             <h4>{`${fromLocationTitle}`}</h4>
                             <p>{`${formatTime(fromDatetime)}`}</p>
                           </LocationInfo>
-                          <p>{`${fromLocationAddress}`}</p>
+                          <LocationAddress>{`${fromLocationAddress}`}</LocationAddress>
                           <LocationInfo>
                             <h4>{`${toLocationTitle}`}</h4>
                             <p>{`${formatTime(toDatetime)}`}</p>
                           </LocationInfo>
-                          <p>{`${toLocationAddress}`}</p>
+                          <LocationAddress>{`${toLocationAddress}`}</LocationAddress>
                         </LocationInfoWrapper>
                       </LocationWrapper>
                     </TransferDetails>

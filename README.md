@@ -37,16 +37,10 @@ react-dom: ^18.2.0
 styled-components: ^6.1.6
 ```
 
-//todo: need to find out how to make the formatTime function work
-
 //todo: toda modal mobile com um ficheiro separado para seu conteudo
-
-//todo: page counter component on the bottom of front page
 
 //todo: mobile navbar que abre
 
 //todo: fazer uma tela inicial
 
 //todo: modal slider for web
-
-//todo: readme
