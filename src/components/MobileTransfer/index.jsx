@@ -137,7 +137,6 @@ const MobileTransferDetailsModal = styled.div`
   z-index: 1000;
   width: 100%;
   height: 100%;
-  overflow: auto;
   border-radius: 12px 12px 0px 0px;
   transition: opacity 0.5s ease-in-out;
 `
