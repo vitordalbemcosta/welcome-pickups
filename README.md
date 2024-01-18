@@ -8,7 +8,7 @@ The user is able to check the next scheduled transfers on this app. In a grid se
 
 The user has the option of clicking on one of the in order to get a modal with more information about that specific transfer chosen;
 
-This is a responsive-fliendly project, therefore, the scheduled transfers & modal will have its own style when the screen reaches a certain px.
+This is a responsive-fliendly project, therefore, the scheduled transfers & modal will have its own style when the screen reaches a certain px;
 
 ![project](https://github.com/vitordalbemcosta/welcome-pickups/assets/95107819/83795bc6-16b1-4922-8919-6c285595cf52)
 

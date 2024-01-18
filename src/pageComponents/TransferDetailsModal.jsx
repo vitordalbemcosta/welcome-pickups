@@ -193,11 +193,11 @@ const LocationInfo = styled.div`
     font-weight: 600;
     line-height: ${rem(21)};
     text-align: left;
-    margin-left: 65px;
+    margin-left: ${rem(65)};
 
     @media (max-width: ${breakpoints.laptop}) {
       font-size: ${rem(11)};
-      margin-left: 5px;
+      margin-left: ${rem(5)};
     }
 
     @media (max-width: ${breakpoints.tablet}) {
@@ -252,12 +252,12 @@ const LocationArrow = styled.span`
 `
 
 const FillIconStyled = styled.img`
-  width: 20px;
-  height: 20px;
+  width: ${rem(20)};
+  height: ${rem(20)};
 `
 const ArrowDownStyled = styled.img`
-  width: 6px;
-  height: 25px;
+  width: ${rem(6)};
+  height: ${rem(25)};
   margin: 6px 0;
 `
 
@@ -267,8 +267,8 @@ const OpportunitiesWrapper = styled.div`
   flex-wrap: nowrap;
   justify-content: flex-start;
   align-content: stretch;
-  margin-bottom: -12px;
-  margin-top: 10px;
+  margin-bottom: ${rem(-12)};
+  margin-top: ${rem(10)};
 
   p {
     padding-top: 1px;

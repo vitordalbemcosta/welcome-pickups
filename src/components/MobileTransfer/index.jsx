@@ -375,30 +375,38 @@ const BottomButtonsWrapper = styled.div`
 
 const MobileTransfer = ({
   onSelectedTransfer,
-  firstName,
-  lastName,
-  photo,
-  fromLocationTitle,
-  fromDatetime,
-  propertyTitle,
-  category,
   onClose,
-  fromLocationAddress,
-  toLocationTitle,
-  toLocationAddress,
-  toDatetime,
   country,
-  flightStatus,
-  passengers,
-  babySeats,
-  luggage,
-  handLuggage,
-  babies,
-  earlyCheckin,
-  lateCheckout,
-  returnTransfer,
   phoneNumber,
+  transfer,
+  transferDetails,
 }) => {
+  const {
+    travelerFirstName,
+    travelerLastName,
+    travelerPhoto,
+    category,
+    babies,
+    luggage,
+    earlyCheckin,
+    lateCheckout,
+    locationTitle,
+    propertyTitle,
+    returnTransfer,
+    datetime,
+  } = transfer ?? {}
+  const {
+    fromDatetime,
+    fromLocationTitle,
+    fromLocationAddress,
+    toLocationTitle,
+    toLocationAddress,
+    flightStatus,
+    toDatetime,
+    passengers,
+    babySeats,
+    handLuggage,
+  } = transferDetails ?? {}
   const opportunities = [
     {
       icon: PassangerIcon,
@@ -459,10 +467,10 @@ const MobileTransfer = ({
             </ImageWrapper>
             <PhotoAndNameWrapper>
               <Name>
-                {`${firstName}`} {`${lastName}`}
+                {`${travelerFirstName}`} {`${travelerLastName}`}
               </Name>
               <TransferImage
-                src={`${photo}`}
+                src={`${travelerPhoto}`}
                 alt="Traveler photo"
                 aria-hidden="true"
               />
@@ -471,9 +479,9 @@ const MobileTransfer = ({
               <h6>Property</h6>
               <p>{`${propertyTitle}`}</p>
               <h6>Arrival Time</h6>
-              <p>{`${formatDate(fromDatetime)}`}</p>
+              <p>{`${formatDate(datetime)}`}</p>
               <h6>from</h6>
-              <p>{`${fromLocationTitle}`}</p>
+              <p>{`${locationTitle}`}</p>
               <h6>Opportunities</h6>
               <OpportunitiesWrapper>
                 {babies && (
@@ -519,7 +527,9 @@ const MobileTransfer = ({
             <ModalOverlay modalOpen={modalOpen} onClick={closeModal}>
               <MobileTransferDetailsModal>
                 <CloseButtonContainer>
-                  <CloseButtonText>{`${firstName}`}'s trip</CloseButtonText>
+                  <CloseButtonText>
+                    {`${travelerFirstName}`}'s trip
+                  </CloseButtonText>
                   <CloseButton onClick={onClose}>
                     <CloseIconImage src={CloseIcon} alt="Close" />
                   </CloseButton>
@@ -575,14 +585,14 @@ const MobileTransfer = ({
                     <YourGuest>
                       <GuestImageWrapper>
                         <GuestImage
-                          src={`${photo}`}
+                          src={`${travelerPhoto}`}
                           alt="Traveler photo"
                           aria-hidden="true"
                         />
                       </GuestImageWrapper>
                       <GuestInfoWrapper>
                         <Name>
-                          {`${firstName}`} {`${lastName}`}
+                          {`${travelerFirstName}`} {`${travelerLastName}`}
                         </Name>
                         <PhoneAndCountry>{`${phoneNumber}`}</PhoneAndCountry>
                         <PhoneAndCountry>From {`${country}`}</PhoneAndCountry>

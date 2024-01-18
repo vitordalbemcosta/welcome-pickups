@@ -251,27 +251,8 @@ const TransferByDate = () => {
             </TransferItem>
             <MobileTransfer
               key={transfer.id}
-              firstName={transfer.travelerFirstName}
-              lastName={transfer.travelerLastName}
-              photo={transfer.travelerPhoto}
-              fromLocationTitle={transfer.locationTitle}
-              fromDatetime={transfer.datetime}
-              propertyTitle={transfer.propertyTitle}
-              category={transfer.category}
-              babies={transfer.babies}
-              earlyCheckin={transfer.earlyCheckin}
-              lateCheckout={transfer.lateCheckout}
-              returnTransfer={transfer.returnTransfer}
-              flightStatus={mappedDetails?.flightStatus}
-              passengers={mappedDetails?.passengers}
-              babySeats={mappedDetails?.babySeats}
-              luggage={mappedDetails?.luggage}
-              handLuggage={mappedDetails?.handLuggage}
-              toLocationAddress={mappedDetails?.toLocationAddress}
-              fromLocationAddress={mappedDetails?.fromLocationAddress}
-              toLocationTitle={mappedDetails?.toLocationTitle}
-              toDatetime={mappedDetails?.toDatetime}
-              transfer={selectedTransfer}
+              transfer={transfer}
+              transferDetails={mappedDetails}
               onSelectedTransfer={() => setSelectedTransfer(transfer)}
               phoneNumber={mappedDetails?.traveler?.phoneNumber}
               country={mappedDetails?.traveler.country}
@@ -339,27 +320,8 @@ const TransferByDate = () => {
             </TransferItem>
             <MobileTransfer
               key={transfer.id}
-              firstName={transfer.travelerFirstName}
-              lastName={transfer.travelerLastName}
-              photo={transfer.travelerPhoto}
-              fromLocationTitle={transfer.locationTitle}
-              fromDatetime={transfer.datetime}
-              propertyTitle={transfer.propertyTitle}
-              category={transfer.category}
-              babies={transfer.babies}
-              earlyCheckin={transfer.earlyCheckin}
-              lateCheckout={transfer.lateCheckout}
-              returnTransfer={transfer.returnTransfer}
-              flightStatus={mappedDetails?.flightStatus}
-              passengers={mappedDetails?.passengers}
-              babySeats={mappedDetails?.babySeats}
-              luggage={mappedDetails?.luggage}
-              handLuggage={mappedDetails?.handLuggage}
-              toLocationAddress={mappedDetails?.toLocationAddress}
-              fromLocationAddress={mappedDetails?.fromLocationAddress}
-              toLocationTitle={mappedDetails?.toLocationTitle}
-              toDatetime={mappedDetails?.toDatetime}
-              transfer={selectedTransfer}
+              transfer={transfer}
+              transferDetails={mappedDetails}
               onSelectedTransfer={() => setSelectedTransfer(transfer)}
               phoneNumber={mappedDetails?.traveler?.phoneNumber}
               country={mappedDetails?.traveler.country}
@@ -427,27 +389,8 @@ const TransferByDate = () => {
             </TransferItem>
             <MobileTransfer
               key={transfer.id}
-              firstName={transfer.travelerFirstName}
-              lastName={transfer.travelerLastName}
-              photo={transfer.travelerPhoto}
-              fromLocationTitle={transfer.locationTitle}
-              fromDatetime={transfer.datetime}
-              propertyTitle={transfer.propertyTitle}
-              category={transfer.category}
-              babies={transfer.babies}
-              earlyCheckin={transfer.earlyCheckin}
-              lateCheckout={transfer.lateCheckout}
-              returnTransfer={transfer.returnTransfer}
-              flightStatus={mappedDetails?.flightStatus}
-              passengers={mappedDetails?.passengers}
-              babySeats={mappedDetails?.babySeats}
-              luggage={mappedDetails?.luggage}
-              handLuggage={mappedDetails?.handLuggage}
-              toLocationAddress={mappedDetails?.toLocationAddress}
-              fromLocationAddress={mappedDetails?.fromLocationAddress}
-              toLocationTitle={mappedDetails?.toLocationTitle}
-              toDatetime={mappedDetails?.toDatetime}
-              transfer={selectedTransfer}
+              transfer={transfer}
+              transferDetails={mappedDetails}
               onSelectedTransfer={() => setSelectedTransfer(transfer)}
               phoneNumber={mappedDetails?.traveler?.phoneNumber}
               country={mappedDetails?.traveler.country}
