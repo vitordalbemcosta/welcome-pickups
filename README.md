@@ -6,7 +6,7 @@ This project displays a scheduled transfers feed page. The data is coming from t
 
 The user is able to check the next scheduled transfers on this app. In a grid separated by days;
 
-The user has the option of clicking on one of the in order to get a modal with more information about that specific transfer chosen;
+The user has the option of clicking on one of the in order to open a modal with more information about that specific transfer chosen;
 
 This is a responsive-fliendly project, therefore, the scheduled transfers & modal will have its own style when the screen reaches a certain px;
 
