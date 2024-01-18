@@ -40,6 +40,9 @@ const IconButton = styled.button`
   margin-left: ${rem(10)};
   width: ${rem(44)};
   height: ${rem(44)};
+  &:hover {
+    background: #e3e5e8;
+  }
 `
 
 const IconImage = styled.img`

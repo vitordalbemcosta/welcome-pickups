@@ -13,25 +13,35 @@ const RectangleContainer = styled.div`
   align-items: center;
   padding: 0 ${rem(16)};
   margin-bottom: ${rem(11)};
-  margin-top: ${rem(10)};
+  margin-top: ${rem(14)};
 
   @media (max-width: ${breakpoints.laptop}) {
-    width: 58%;
+    width: 66%;
   }
 
   @media (max-width: ${breakpoints.tablet}) {
-    width: 70%;
+    width: 60%;
+    border-radius: ${rem(22)};
+    border: 1px solid rgba(45, 59, 78, 0.08);
+    background: #fff;
+    box-shadow: 0px 2px 10px 0px rgba(45, 59, 78, 0.04);
+    height: ${rem(45)};
   }
 
   @media (max-width: ${breakpoints.mobile}) {
-    display: none;
+    width: 50%;
+    border-radius: ${rem(22)};
+    border: 1px solid rgba(45, 59, 78, 0.08);
+    background: #fff;
+    box-shadow: 0px 2px 10px 0px rgba(45, 59, 78, 0.04);
+    height: ${rem(45)};
   }
 `
 
 const IconContainer = styled.div`
   display: flex;
   align-items: center;
-  margin-right: 11px;
+  margin-right: ${rem(11)};
 `
 
 const Icon = styled.img`
@@ -42,7 +52,8 @@ const Icon = styled.img`
 `
 
 const Number = styled.span`
-  font-size: ${rem(12)};
+  color: rgba(45, 59, 78, 1);
+  font-size: ${rem(14)};
   margin-left: -5px;
   color: rgba(45, 59, 78, 0.5);
   font-style: normal;

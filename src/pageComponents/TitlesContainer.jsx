@@ -37,7 +37,6 @@ const Wrapper = styled.div`
 const Title = styled.h4`
   margin: 0;
   color: rgba(45, 59, 78, 0.5);
-  font-family: 'Museo Sans', sans-serif;
   font-size: ${rem(11)};
   text-transform: uppercase;
   font-weight: 600;

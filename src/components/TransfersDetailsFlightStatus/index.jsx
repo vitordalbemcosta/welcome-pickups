@@ -17,15 +17,26 @@ const RectangleContainer = styled.div`
   padding: 18px;
 
   @media (max-width: ${breakpoints.laptop}) {
-    width: 58%;
+    width: 66%;
+    height: ${rem(43)};
   }
 
   @media (max-width: ${breakpoints.tablet}) {
-    width: 70%;
+    width: 60%;
+    border-radius: 22px;
+    border: 1px solid rgba(45, 59, 78, 0.08);
+    background: #fff;
+    box-shadow: 0px 2px 10px 0px rgba(45, 59, 78, 0.04);
+    height: 45px;
   }
 
   @media (max-width: ${breakpoints.mobile}) {
-    display: none;
+    width: 50%;
+    border-radius: 22px;
+    border: 1px solid rgba(45, 59, 78, 0.08);
+    background: #fff;
+    box-shadow: 0px 2px 10px 0px rgba(45, 59, 78, 0.04);
+    height: 45px;
   }
 `
 
@@ -37,7 +48,6 @@ const IconContainer = styled.div`
 const VerticalBar = styled.div`
   width: 1px;
   height: 20px;
-  flex-shrink: 0;
   background: rgba(45, 59, 78, 0.08);
 `
 
@@ -55,16 +65,10 @@ const Number = styled.span`
 
   @media (max-width: ${breakpoints.laptop}) {
     width: 95%;
-    font-size: ${rem(12)};
   }
 
   @media (max-width: ${breakpoints.tablet}) {
     width: 90%;
-    font-size: ${rem(10)};
-  }
-
-  @media (max-width: ${breakpoints.mobile}) {
-    display: none;
   }
 `
 
@@ -74,17 +78,13 @@ const FlightStatus = styled.span`
   font-weight: 600;
 
   @media (max-width: ${breakpoints.laptop}) {
-    width: 95%;
+    width: 100%;
     font-size: ${rem(12)};
   }
 
   @media (max-width: ${breakpoints.tablet}) {
-    width: 90%;
-    font-size: ${rem(10)};
-  }
-
-  @media (max-width: ${breakpoints.mobile}) {
-    display: none;
+    width: 100%;
+    font-size: ${rem(12)};
   }
 `
 

@@ -16,6 +16,14 @@ const ModalOverlay = styled.div`
   align-items: center;
   justify-content: center;
   z-index: 1000;
+
+  @media (max-width: 600px) {
+    display: none;
+  }
+
+  @media (max-width: ${breakpoints.mobile}) {
+    display: none;
+  }
 `
 
 const ModalContent = styled.div`
@@ -28,12 +36,12 @@ const ModalContent = styled.div`
   position: relative;
   @media (max-width: ${breakpoints.laptop}) {
     width: 85%;
-    min-height: 70%;
+    min-height: 55%;
   }
 
   @media (max-width: ${breakpoints.tablet}) {
     min-width: 75%;
-    min-height: 70%;
+    min-height: 55%;
   }
 
   @media (max-width: 600px) {

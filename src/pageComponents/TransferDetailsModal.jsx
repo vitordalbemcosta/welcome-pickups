@@ -2,10 +2,10 @@ import React from 'react'
 import Modal from '../components/Modal'
 import styled from 'styled-components'
 import { rem } from 'polished'
-import Baby from '../images/Baby.svg'
-import EarlyCheckIn from '../images/Early_check_in.svg'
-import LateCheckOut from '../images/Late_check_out.svg'
-import Transfer from '../images/Transfer.svg'
+import BabyOppotunity from '../images/BabyOpportunityIcon.svg'
+import EarlyCheckInOppotunity from '../images/EarlyCheckInIcon.svg'
+import LateCheckOutOppotunity from '../images/LateCheckoutIcon.svg'
+import TransferOppotunity from '../images/TransferIcon.svg'
 import TransfersDetailsRectangle from '../components/TransfersDetailsRectangle'
 import TransfersDetailsFlightStatus from '../components/TransfersDetailsFlightStatus'
 import { breakpoints } from '../breakpoints'
@@ -31,12 +31,12 @@ const Container = styled.div`
 
   @media (max-width: ${breakpoints.laptop}) {
     width: 95%;
-    height: 62%;
+    height: 52%;
   }
 
   @media (max-width: ${breakpoints.tablet}) {
     width: 85%;
-    height: 64%;
+    height: 50%;
   }
 
   @media (max-width: ${breakpoints.mobile}) {
@@ -277,29 +277,27 @@ const OpportunitiesWrapper = styled.div`
 
 const TransferDetailsModal = ({
   isOpen,
-  firstName,
-  lastName,
   phoneNumber,
-  photo,
   email,
   country,
   closeModal,
-  fromLocationTitle,
-  fromLocationAddress,
-  toLocationTitle,
-  fromDatetime,
-  toLocationAddress,
-  toDatetime,
-  passengers,
-  babySeats,
-  luggage,
-  handLuggage,
-  flightStatus,
-  earlyCheckin,
-  lateCheckout,
-  returnTransfer,
   transfer,
+  transferDetails,
 }) => {
+  const { travelerFirstName, travelerLastName, travelerPhoto } = transfer ?? {}
+  const {
+    fromDatetime,
+    fromLocationTitle,
+    fromLocationAddress,
+    toLocationTitle,
+    toLocationAddress,
+    flightStatus,
+    toDatetime,
+    passengers,
+    babySeats,
+    luggage,
+    handLuggage,
+  } = transferDetails ?? {}
   const opportunities = [
     {
       icon: PassangerIcon,
@@ -327,12 +325,12 @@ const TransferDetailsModal = ({
             <ClientDetails>
               <PhotoAndNameWrapper>
                 <TransferImage
-                  src={photo}
+                  src={travelerPhoto}
                   alt="Traveler photo"
                   aria-hidden="true"
                 />
-                <Name>{`${firstName}`}</Name>
-                <LastName>{`${lastName}`}</LastName>
+                <Name>{`${travelerFirstName}`}</Name>
+                <LastName>{`${travelerLastName}`}</LastName>
               </PhotoAndNameWrapper>
               <Line />
               <DetailsContainer>
@@ -346,7 +344,7 @@ const TransferDetailsModal = ({
                 {transfer && transfer.babies && (
                   <OpportunitiesWrapper>
                     <OpportunityImage
-                      src={Baby}
+                      src={BabyOppotunity}
                       alt="Baby Opportunity"
                       aria-hidden="true"
                     />
@@ -356,7 +354,7 @@ const TransferDetailsModal = ({
                 {transfer && transfer.earlyCheckin && (
                   <OpportunitiesWrapper>
                     <OpportunityImage
-                      src={EarlyCheckIn}
+                      src={EarlyCheckInOppotunity}
                       alt="Early Check-In Opportunity"
                       aria-hidden="true"
                     />
@@ -366,7 +364,7 @@ const TransferDetailsModal = ({
                 {transfer && transfer.lateCheckout && (
                   <OpportunitiesWrapper>
                     <OpportunityImage
-                      src={LateCheckOut}
+                      src={LateCheckOutOppotunity}
                       alt="Late Check-Out Opportunity"
                       aria-hidden="true"
                     />
@@ -376,7 +374,7 @@ const TransferDetailsModal = ({
                 {transfer && transfer.returnTransfer && (
                   <OpportunitiesWrapper>
                     <OpportunityImage
-                      src={Transfer}
+                      src={TransferOppotunity}
                       alt="Transfer Opportunity"
                       aria-hidden="true"
                     />

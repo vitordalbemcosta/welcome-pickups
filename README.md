@@ -36,11 +36,3 @@ react: ^18.2.0
 react-dom: ^18.2.0
 styled-components: ^6.1.6
 ```
-
-//todo: toda modal mobile com um ficheiro separado para seu conteudo
-
-//todo: mobile navbar que abre
-
-//todo: fazer uma tela inicial
-
-//todo: modal slider for web

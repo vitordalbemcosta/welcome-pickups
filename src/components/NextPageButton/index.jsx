@@ -12,9 +12,7 @@ const StyledButton = styled.button`
 `
 
 const NextPageButton = ({ onClick }) => {
-  const handleButtonClick = () => {
-    onClick()
-  }
+  const handleButtonClick = () => {}
 
   return <StyledButton onClick={handleButtonClick} />
 }

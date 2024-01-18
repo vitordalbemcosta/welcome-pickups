@@ -5,10 +5,10 @@ import mapTransfer from '../utils/mapTransfer'
 import mapDetails from '../utils/mapDetails'
 import styled from 'styled-components'
 import { rem } from 'polished'
-import BabyOppotunity from '../images/Baby.svg'
-import EarlyCheckInOppotunity from '../images/Early_check_in.svg'
-import LateCheckOutOppotunity from '../images/Late_check_out.svg'
-import TransferOppotunity from '../images/Transfer.svg'
+import BabyOppotunity from '../images/BabyOpportunityIcon.svg'
+import EarlyCheckInOppotunity from '../images/EarlyCheckInIcon.svg'
+import LateCheckOutOppotunity from '../images/LateCheckoutIcon.svg'
+import TransferOppotunity from '../images/TransferIcon.svg'
 import TransferDetailsModal from './TransferDetailsModal'
 import { breakpoints } from '../breakpoints/index'
 import formatDate from '../utils/formatDate'
@@ -79,8 +79,8 @@ const OpportunityImage = styled.img`
   border-radius: 50%;
 `
 const BackgroundWrapper = styled.div`
-  width: 38px;
-  height: 38px;
+  width: ${rem(38)};
+  height: ${rem(38)};
   background-color: #f4f5f6;
   border-radius: 50%;
   display: flex;
@@ -111,6 +111,10 @@ const TransferItem = styled.div`
   @media (max-width: ${breakpoints.mobile}) {
     display: none;
   }
+
+  &:hover {
+    background: #e3e5e8;
+  }
 `
 const Text = styled.p`
   font-weight: 400;
@@ -125,15 +129,15 @@ const NameText = styled.p`
 const NextPageButtonsWrapper = styled.div`
   display: flex;
   justify-content: center;
-  margin-top: 25px;
-  margin-left: 284px;
+  margin-top: ${rem(25)};
+  margin-left: ${rem(284)};
 
   @media (max-width: ${breakpoints.laptop}) {
-    margin-left: 100px;
+    margin-left: ${rem(100)};
   }
 
   @media (max-width: 1220px) {
-    margin-left: 100px;
+    margin-left: ${rem(100)};
   }
 
   @media (max-width: ${breakpoints.tablet}) {
@@ -180,28 +184,12 @@ const TransferByDate = () => {
     <div>
       <TransferDetailsModal
         isOpen={!!selectedTransfer}
-        photo={selectedTransfer?.travelerPhoto}
-        firstName={selectedTransfer?.travelerFirstName}
-        lastName={selectedTransfer?.travelerLastName}
-        phoneNumber={mappedDetails?.traveler?.phoneNumber}
         email={mappedDetails?.traveler?.email}
         country={mappedDetails?.traveler?.country}
         closeModal={closeModal}
-        fromLocationTitle={mappedDetails?.fromLocationTitle}
-        fromDatetime={mappedDetails?.fromDatetime}
-        toLocationTitle={mappedDetails?.toLocationTitle}
-        toDatetime={mappedDetails?.toDatetime}
-        fromLocationAddress={mappedDetails?.fromLocationAddress}
-        toLocationAddress={mappedDetails?.toLocationAddress}
-        babySeats={mappedDetails?.babySeats}
-        earlyCheckin={mappedDetails?.earlyCheckin}
-        lateCheckout={mappedDetails?.lateCheckout}
-        returnTransfer={mappedDetails?.returnTransfer}
         transfer={selectedTransfer}
-        handLuggage={mappedDetails?.handLuggage}
-        luggage={mappedDetails?.luggage}
-        passengers={mappedDetails?.passengers}
-        flightStatus={mappedDetails?.flightStatus}
+        transferDetails={mappedDetails}
+        phoneNumber={mappedDetails?.traveler?.phoneNumber}
       />
       <Title>Today</Title>
       {todayData.map((transfer) => {
@@ -263,7 +251,6 @@ const TransferByDate = () => {
             </TransferItem>
             <MobileTransfer
               key={transfer.id}
-              onClick={() => openModal(transfer)}
               firstName={transfer.travelerFirstName}
               lastName={transfer.travelerLastName}
               photo={transfer.travelerPhoto}
@@ -275,6 +262,19 @@ const TransferByDate = () => {
               earlyCheckin={transfer.earlyCheckin}
               lateCheckout={transfer.lateCheckout}
               returnTransfer={transfer.returnTransfer}
+              flightStatus={mappedDetails?.flightStatus}
+              passengers={mappedDetails?.passengers}
+              babySeats={mappedDetails?.babySeats}
+              luggage={mappedDetails?.luggage}
+              handLuggage={mappedDetails?.handLuggage}
+              toLocationAddress={mappedDetails?.toLocationAddress}
+              fromLocationAddress={mappedDetails?.fromLocationAddress}
+              toLocationTitle={mappedDetails?.toLocationTitle}
+              toDatetime={mappedDetails?.toDatetime}
+              transfer={selectedTransfer}
+              onSelectedTransfer={() => setSelectedTransfer(transfer)}
+              phoneNumber={mappedDetails?.traveler?.phoneNumber}
+              country={mappedDetails?.traveler.country}
             />
           </>
         )
@@ -339,7 +339,6 @@ const TransferByDate = () => {
             </TransferItem>
             <MobileTransfer
               key={transfer.id}
-              onClick={() => openModal(transfer)}
               firstName={transfer.travelerFirstName}
               lastName={transfer.travelerLastName}
               photo={transfer.travelerPhoto}
@@ -351,6 +350,19 @@ const TransferByDate = () => {
               earlyCheckin={transfer.earlyCheckin}
               lateCheckout={transfer.lateCheckout}
               returnTransfer={transfer.returnTransfer}
+              flightStatus={mappedDetails?.flightStatus}
+              passengers={mappedDetails?.passengers}
+              babySeats={mappedDetails?.babySeats}
+              luggage={mappedDetails?.luggage}
+              handLuggage={mappedDetails?.handLuggage}
+              toLocationAddress={mappedDetails?.toLocationAddress}
+              fromLocationAddress={mappedDetails?.fromLocationAddress}
+              toLocationTitle={mappedDetails?.toLocationTitle}
+              toDatetime={mappedDetails?.toDatetime}
+              transfer={selectedTransfer}
+              onSelectedTransfer={() => setSelectedTransfer(transfer)}
+              phoneNumber={mappedDetails?.traveler?.phoneNumber}
+              country={mappedDetails?.traveler.country}
             />
           </>
         )
@@ -415,7 +427,6 @@ const TransferByDate = () => {
             </TransferItem>
             <MobileTransfer
               key={transfer.id}
-              onClick={() => openModal(transfer)}
               firstName={transfer.travelerFirstName}
               lastName={transfer.travelerLastName}
               photo={transfer.travelerPhoto}
@@ -427,6 +438,19 @@ const TransferByDate = () => {
               earlyCheckin={transfer.earlyCheckin}
               lateCheckout={transfer.lateCheckout}
               returnTransfer={transfer.returnTransfer}
+              flightStatus={mappedDetails?.flightStatus}
+              passengers={mappedDetails?.passengers}
+              babySeats={mappedDetails?.babySeats}
+              luggage={mappedDetails?.luggage}
+              handLuggage={mappedDetails?.handLuggage}
+              toLocationAddress={mappedDetails?.toLocationAddress}
+              fromLocationAddress={mappedDetails?.fromLocationAddress}
+              toLocationTitle={mappedDetails?.toLocationTitle}
+              toDatetime={mappedDetails?.toDatetime}
+              transfer={selectedTransfer}
+              onSelectedTransfer={() => setSelectedTransfer(transfer)}
+              phoneNumber={mappedDetails?.traveler?.phoneNumber}
+              country={mappedDetails?.traveler.country}
             />
           </>
         )

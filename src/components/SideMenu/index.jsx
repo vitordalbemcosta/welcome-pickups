@@ -29,6 +29,10 @@ const SideMenuContainer = styled.div`
   @media (max-width: ${breakpoints.laptop}) {
     display: none;
   }
+
+  @media (max-width: ${breakpoints.mobile}) {
+    display: none;
+  }
 `
 
 const Logo = styled.img`
@@ -66,6 +70,10 @@ const ButtonImage = styled.img`
   height: ${rem(32)};
   margin-bottom: ${rem(16)};
   border-radius: 8px;
+
+  &:hover {
+    background: #e3e5e8;
+  }
 `
 
 const BottomButtonContainer = styled.div`

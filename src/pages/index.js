@@ -6,6 +6,7 @@ import SideMenu from "../components/SideMenu";
 import styled from "styled-components";
 import TransferByDate from "../pageComponents/TransferByDate";
 import TitlesContainer from "../pageComponents/TitlesContainer";
+import MobileHeader from "../components/MobileHeader";
 import { breakpoints } from "../breakpoints";
 
 const SideMenuWrapper = styled.div`
@@ -28,9 +29,13 @@ const Wrapper = styled.div`
   box-sizing: border-box;
 
   @media (max-width: ${breakpoints.laptop}) {
+    margin-left: ${rem(0)};
+    height: 100%;
   }
 
   @media (max-width: ${breakpoints.tablet}) {
+    margin-left: ${rem(0)};
+    align-items: center;
     height: 100%;
   }
 
@@ -41,7 +46,6 @@ const Wrapper = styled.div`
 const Header = styled.h1`
   margin: 0;
   color: #2d3b4e;
-  font-family: "Museo Sans", sans-serif;
   font-size: 22px;
   font-style: normal;
   font-weight: 600;
@@ -50,14 +54,31 @@ const Header = styled.h1`
 `;
 
 const IndexPage = () => {
+  const [isMobile, setIsMobile] = React.useState(
+    window.innerWidth <= parseInt(breakpoints.tablet)
+  );
+
+  React.useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= parseInt(breakpoints.tablet));
+    };
+
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
   return (
     <>
       <NavBar />
       <SideMenuWrapper>
         <SideMenu />
       </SideMenuWrapper>
+      {isMobile && <MobileHeader />}
       <Wrapper>
-        <Header>Transfers</Header>
+        {!isMobile && <Header>Transfers</Header>}
         <TitlesContainer />
         <TransferByDate />
       </Wrapper>
