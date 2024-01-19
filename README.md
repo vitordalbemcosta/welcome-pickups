@@ -23,6 +23,10 @@ cd welcome-pickups
 ```
 
 ```bash
+# Node version >= 18
+$ nvm install 18
+$ nvm use 18
+
 # Instaling dependencies
 $ npm install
 
